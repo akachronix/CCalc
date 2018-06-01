@@ -15,8 +15,7 @@ void segfault_handle(int param)
 int main(int argc, const char* argv[])
 {
 	// set segmentation fault handler for cli errors
-	void(*segfault_signal)(int);
-	segfault_signal = signal(SIGSEGV, segfault_handle);
+	void(*segfault_signal)(int) = signal(SIGSEGV, segfault_handle);
 
 	// check if we got a signal
 	if(signaled == 1) 
