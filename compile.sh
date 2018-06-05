@@ -46,8 +46,4 @@ fi
 mkdir obj
 mv *.o obj
 
-echo "[${RED}LOG${NC}] Moving shared library into standard directory."
-sudo mv bin/libmath.so /usr/lib
-sudo chmod 755 /usr/lib/libmath.so
-
 echo "[${RED}LOG${NC}] Done."
