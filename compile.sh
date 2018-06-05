@@ -10,6 +10,13 @@ else
 	echo "[${RED}LOG${NC}] libmath shared library doesn't exist in lib directory."
 fi
 
+if [ -f /usr/bin/ccalc ]; then
+	echo "[${RED}LOG${NC}] Deleting ccalc binary from /usr/bin."
+	sudo rm -rf /usr/bin/ccalc
+else
+	echo "[${RED}LOG${NC}] ccalc binary doesn't exist in /usr/bin."
+fi
+
 if [ -d bin ]; then
 	echo "[${RED}LOG${NC}] Deleting bin directory."
 	rm -rf bin
