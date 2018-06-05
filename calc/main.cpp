@@ -1,26 +1,13 @@
 #include <iostream>
+#include <cstdlib>
 #include <cstring>
 #include <csignal>
 
 #include "libmath.hpp"
 using namespace libmath;
 
-sig_atomic_t signaled = 0;
-
-void segfault_handle(int param)
-{
-	signaled = 1;
-}
-
 int main(int argc, const char* argv[])
 {
-	// set segmentation fault handler for cli errors
-	void(*segfault_signal)(int) = signal(SIGSEGV, segfault_handle);
-
-	// check if we got a signal
-	if(signaled == 1) 
-		return -1;
-
 	// actual frontend
 	if(argc == 1)
 	{
@@ -61,7 +48,7 @@ int main(int argc, const char* argv[])
 
 				std::cout << "Enter first number: ";
 				std::cin >> num1;
-				
+
 				std::cout << "Enter second number: ";
 				std::cin >> num2;
 
@@ -92,41 +79,41 @@ int main(int argc, const char* argv[])
 
 				std::cout << std::endl;
 			}
-			
+
 			else if(option == 2)
 			{
 				std::cout << "1) Power" << std::endl;
-				
+
 				std::cout << std::endl;
-				
+
 				std::cin >> option;
-				
+
 				std::cout << std::endl;
-				
+
 				double num1, num2;
-				
+
 				std::cout << "Enter first number: ";
 				std::cin >> num1;
-				
+
 				std::cout << "Enter second number: ";
 				std::cin >> num2;
 
 				std::cout << std::endl;
-				
+
 				switch(option)
 				{
 				case 1:
 					std::cout << "Answer: " << power(num1, num2) << std::endl;
 					break;
-				
+
 				default:
 					std::cout << "[Error] Invalid input." << std::endl;
 					break;
 				}
-				
+
 				std::cout << std::endl;
 			}
-			
+
 			else if(option == 3)
 			{
 				std::cout << "1) Trapezoid" << std::endl;
@@ -134,32 +121,31 @@ int main(int argc, const char* argv[])
 				std::cout << "3) Triangle" << std::endl;
 				std::cout << "4) Circle" << std::endl;
 				std::cout << "5) Square" << std::endl;
-				
+
 				std::cout << std::endl;
-			
+
 				std::cin >> option;
-				
 				std::cout << std::endl;
-				
+
 				double area;
-				
+
 				switch(option)
 				{
 				case 1:
 				{
 					double base, base2, height;
-					
+
 					std::cout << "Enter base: ";
 					std::cin >> base;
-					
+
 					std::cout << "Enter base 2: ";
 					std::cin >> base2;
-					
+
 					std::cout << "Enter height: ";
 					std::cin >> height;
-					
+
 					std::cout << std::endl;
-					
+
 					trapezoid_t shape = Trapezoid(base, base2, height);
 					area = shape.area;
 					
@@ -251,6 +237,12 @@ int main(int argc, const char* argv[])
 
 	else if(argc > 0)
 	{
+		if(argc <= 2)
+		{
+			std::cout << "[Error] Invalid command." << std::endl;
+			return -1;
+		}
+
 		double num1 = atof(argv[2]);
 		double num2 = atof(argv[3]);
 
@@ -273,7 +265,7 @@ int main(int argc, const char* argv[])
 		{
 			std::cout << "Answer: " << divide(num1, num2) << std::endl;
 		}
-		
+
 		else if((strcmp(argv[1], "--power") == 0) || (strcmp(argv[1], "-p") == 0))
 		{
 			std::cout << "Answer: " << power(num1, num2) << std::endl;
