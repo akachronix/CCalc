@@ -1,10 +1,32 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
-#include <csignal>
 
 #include "libmath.hpp"
 using namespace libmath;
+
+void help()
+{
+	std::cout << "Usage:" << std::endl;
+	std::cout << "Arithmetic -" << std::endl;
+	std::cout << "--add       | adds two numbers (two arguments)" << std::endl;
+	std::cout << "--subtract  | subtracts two numbers (two arguments)" << std::endl;
+	std::cout << "--multiply  | multiplies two numbers (two arguments)" << std::endl;
+	std::cout << "--divide    | divides two numbers (two arguments)" << std::endl;
+	std::cout << std::endl;
+	std::cout << "Exponential -" << std::endl;
+	std::cout << "--power     | puts x to the power of y (two arguments)" << std::endl;
+	std::cout << std::endl;
+	
+#warning TODO: finish usage guide
+	std::cout << "Geometry -" << std::endl;
+	std::cout << "--trapezoid | " << std::endl;
+	std::cout << "--rectangle | " << std::endl;
+	std::cout << "--triangle  | " << std::endl;
+	std::cout << "--circle    | " << std::endl;
+	std::cout << "--square    | " << std::endl;
+	std::cout << std::endl;
+}
 
 int main(int argc, const char* argv[])
 {
@@ -22,7 +44,8 @@ int main(int argc, const char* argv[])
 			std::cout << "1) Arithmetic" << std::endl;
 			std::cout << "2) Exponential" << std::endl;
 			std::cout << "3) Geometry" << std::endl;
-			std::cout << "4) Exit" << std::endl;
+			std::cout << "4) Help" << std::endl;
+			std::cout << "5) Exit" << std::endl;
 
 			std::cout << std::endl;
 
@@ -229,7 +252,14 @@ int main(int argc, const char* argv[])
 			}
 
 			else if(option == 4)
+			{
+				help();
+			}
+
+			else if(option == 5)
+			{
 				running = false;
+			}
 		}
 
 		return 0;
@@ -240,6 +270,7 @@ int main(int argc, const char* argv[])
 		if(argc <= 2)
 		{
 			std::cout << "[Error] Invalid command." << std::endl;
+			help();
 			return -1;
 		}
 
@@ -271,9 +302,21 @@ int main(int argc, const char* argv[])
 			std::cout << "Answer: " << power(num1, num2) << std::endl;
 		}
 
+		else if((strcmp(argv[1], "--trapezoid") == 0))
+		{
+			trapezoid_t shape = Trapezoid(atof(argv[2]), atof(argv[3]), atof(argv[4]));
+			std::cout << "Answer: " << shape.area << std::endl;
+		}
+
+		else if((strcmp(argv[1], "--help") == 0))
+		{
+			help();
+		}
+
 		else
 		{
 			std::cout << "[Error] Invalid command." << std::endl;
+			help();
 		}
 	}
 
