@@ -308,6 +308,8 @@ int main(int argc, const char* argv[])
 			std::cout << "Answer: " << shape.area << std::endl;
 		}
 
+#warning TODO: finish geometry CLI arguments
+
 		else if((strcmp(argv[1], "--help") == 0))
 		{
 			help();
