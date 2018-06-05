@@ -5,8 +5,11 @@ Compiles on Linux and Windows with MinGW.
 - Clone repository using
 ```git clone https://github.com/akachronix/CCalc.git```
 
-- Mark script as executable
+- Mark script as executable.
 ```chmod +x compile.sh```
+
+- Run script.
+```sh compile.sh```
 
 - Success.
 
@@ -14,7 +17,10 @@ Compiles on Linux and Windows with MinGW.
 - Clone repository using
 ```git clone https://github.com/akachronix/CCalc.git```
 
-- Mark script as executable
+- Mark script as executable.
 ```chmod +x install.sh```
+
+- Run script.
+```sh install.sh```
 
 - Success.
