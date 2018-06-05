@@ -30,10 +30,21 @@ echo "[${RED}LOG${NC}] Linking libmath into shared library."
 g++ -Ilibmath -Lbin -Wall -pedantic -g -shared -o bin/libmath.so libmath.o
 
 echo "[${RED}LOG${NC}] Linking frontend with library into applet."
-g++ -Ilibmath -Lbin -Wall -pedantic -g -o bin/calc main.o -lmath
+g++ -Ilibmath -Lbin -Wall -pedantic -g -o bin/ccalc main.o -lmath
 
-echo "[${RED}LOG${NC}] Cleaning up object files."
-rm -rf *.o
+echo "[${RED}LOG${NC}] Statically linking binary for portability."
+g++ -Ilibmath -Lbin -Wall -pedantic -g -o bin/ccalc_s main.o libmath.o -lstdc++
+
+echo "[${RED}LOG${NC}] Moving object files."
+if [ -d obj ]; then
+	echo "[${RED}LOG${NC}] obj directory already exists."
+	rm -rf obj
+else
+	echo "[${RED}LOG${NC}] obj directory doesn't exist."
+fi
+
+mkdir obj
+mv *.o obj
 
 echo "[${RED}LOG${NC}] Moving shared library into standard directory."
 sudo mv bin/libmath.so /usr/lib
