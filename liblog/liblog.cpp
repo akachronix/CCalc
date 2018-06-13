@@ -10,14 +10,20 @@ logger::logger(loglevel_t loglevel)
 
 logger::~logger()
 {
-    #warning TODO: make destructor flush log to file
+    //#warning TODO: make destructor flush log to file
+    dump_log("ccalc.log");
 }
 
 bool logger::log_error(std::string error_str)
 {
-    if (m_loglevel >= loglevel_t::error)
+    if (m_loglevel >= loglevel_t::errors)
     {
-        std::cout << "[ERROR] " << error_str << std::endl;
+        std::string message = "[ERROR] " + error_str + "\n";
+
+        std::cout << message;
+        log_history.push_back(message);
+
+        return true;
     }
     
     return false;
@@ -27,7 +33,11 @@ bool logger::log_warning(std::string warning_str)
 {
     if (m_loglevel >= loglevel_t::warnings)
     {
-        std::cout << "[WARNING] " << warning_str << std::endl;
+        std::string message = "[WARNING] " + warning_str + "\n";
+
+        std::cout << message;
+        log_history.push_back(message);
+
         return true;
     }
 
@@ -38,7 +48,31 @@ bool logger::log(std::string log_str)
 {
     if (m_loglevel >= loglevel_t::everything)
     {
-        std::cout << "[LOG] " << log_str << std::endl;
+        std::string message = "[LOG] " + log_str + "\n";
+        
+        std::cout << message;
+        log_history.push_back(message);
+
+        return true;
+    }
+
+    return false;
+}
+
+bool logger::dump_log(std::string file)
+{
+    std::ofstream log_file;
+    log_file.open(file);
+
+    if(log_file.is_open())
+    {
+        for(auto x : log_history)
+        {
+            log_file << x;
+        }
+        
+        log_file.close();
+
         return true;
     }
 
