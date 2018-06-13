@@ -38,6 +38,8 @@ int main(int argc, const char* argv[])
 
 		std::cout << std::endl;
 
+		logger frontend_logger(loglevel_t::everything, "frontend.log");
+
 		bool running = true;
 		while(running)
 		{
@@ -96,7 +98,7 @@ int main(int argc, const char* argv[])
 					break;
 
 				default:
-					std::cout << "[Error] Invalid input." << std::endl;
+					frontend_logger.log_error("Invalid input.");
 					break;
 				}
 
@@ -130,7 +132,7 @@ int main(int argc, const char* argv[])
 					break;
 
 				default:
-					std::cout << "[Error] Invalid input." << std::endl;
+					frontend_logger.log_error("Invalid input.");
 					break;
 				}
 
@@ -242,7 +244,7 @@ int main(int argc, const char* argv[])
 				}
 
 				default:
-					std::cout << "[Error] Invalid input." << std::endl;
+					frontend_logger.log_error("Invalid input.");
 					break;
 				}
 				
@@ -267,9 +269,11 @@ int main(int argc, const char* argv[])
 
 	else if(argc > 0)
 	{
+		logger terminal_logger(loglevel_t::everything, "terminal.log");
+
 		if(argc <= 2)
 		{
-			std::cout << "[Error] Invalid command." << std::endl;
+			terminal_logger.log_error("Invalid command.");
 			help();
 			return -1;
 		}
@@ -315,7 +319,7 @@ int main(int argc, const char* argv[])
 
 		else
 		{
-			std::cout << "[Error] Invalid command." << std::endl;
+			terminal_logger.log_error("Invalid command.");
 			help();
 		}
 	}

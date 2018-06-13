@@ -24,7 +24,7 @@ logger::logger()
 
 logger::~logger()
 {
-    dump_log("ccalc.log");
+    dump_log(m_logfile);
 }
 
 bool logger::log_error(std::string error_str)
