@@ -3,14 +3,27 @@
 #include <iostream>
 #include <string>
 
+
+logger::logger(loglevel_t loglevel, std::string logfile)
+{
+    m_loglevel = loglevel;
+    m_logfile = logfile;
+}
+
 logger::logger(loglevel_t loglevel)
 {
     m_loglevel = loglevel;
 }
 
+logger::logger()
+{
+    // use defaults (which are to log everything and set filename to logger.log)
+    m_loglevel = loglevel_t::everything;
+    m_logfile = "logger.log";
+}
+
 logger::~logger()
 {
-    //#warning TODO: make destructor flush log to file
     dump_log("ccalc.log");
 }
 
