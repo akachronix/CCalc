@@ -19,8 +19,6 @@ void help()
 	std::cout << "Exponential -" << std::endl;
 	std::cout << "--power     | puts x to the power of y (two arguments)" << std::endl;
 	std::cout << std::endl;
-	
-#warning TODO: finish usage guide
 	std::cout << "Geometry -" << std::endl;
 	std::cout << "--trapezoid | finds the area of a trapezoid (three arguments [base, 2nd base, height])" << std::endl;
 	std::cout << "--rectangle | (not implemented)" << std::endl;
@@ -309,8 +307,6 @@ int main(int argc, const char* argv[])
 			trapezoid_t shape = Trapezoid(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			std::cout << "Answer: " << shape.area << std::endl;
 		}
-
-#warning TODO: finish geometry CLI arguments
 
 		else if((strcmp(argv[1], "--help") == 0))
 		{
