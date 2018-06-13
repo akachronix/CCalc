@@ -5,6 +5,8 @@
 #include "libmath.hpp"
 using namespace libmath;
 
+#include "liblog.hpp"
+
 void help()
 {
 	std::cout << "Usage:" << std::endl;
@@ -20,11 +22,11 @@ void help()
 	
 #warning TODO: finish usage guide
 	std::cout << "Geometry -" << std::endl;
-	std::cout << "--trapezoid | " << std::endl;
-	std::cout << "--rectangle | " << std::endl;
-	std::cout << "--triangle  | " << std::endl;
-	std::cout << "--circle    | " << std::endl;
-	std::cout << "--square    | " << std::endl;
+	std::cout << "--trapezoid | finds the area of a trapezoid (three arguments [base, 2nd base, height])" << std::endl;
+	std::cout << "--rectangle | (not implemented)" << std::endl;
+	std::cout << "--triangle  | (not implemented)" << std::endl;
+	std::cout << "--circle    | (not implemented)" << std::endl;
+	std::cout << "--square    | (not implemented)" << std::endl;
 	std::cout << std::endl;
 }
 
