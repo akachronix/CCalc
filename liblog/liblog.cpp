@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 
-
 logger::logger(loglevel_t loglevel, std::string logfile)
 {
     m_loglevel = loglevel;
