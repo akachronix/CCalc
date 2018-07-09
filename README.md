@@ -1,7 +1,16 @@
 # CCalc
 Compiles on Linux and Windows with MinGW.
 
-## Build
+## Requirements
+### Linux
+- GCC 4.8.1
+- sh
+
+### Windows
+- MinGW (in PATH)
+- Git
+
+## Build (Linux)
 - Clone repository using
 ```git clone https://github.com/akachronix/CCalc.git```
 
@@ -10,6 +19,19 @@ Compiles on Linux and Windows with MinGW.
 
 - Run script.
 ```sh compile.sh```
+
+- Success.
+
+## Build (Windows)
+- Install Git for Windows.
+
+- Clone repository using
+```git clone https://github.com/akachronix/CCalc.git```
+
+- Open a Command Prompt where Git for Windows cloned the repository.
+
+- Run script.
+```compile.cmd```
 
 - Success.
 
