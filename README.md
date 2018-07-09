@@ -4,6 +4,7 @@ Compiles on Linux and Windows with MinGW.
 ## Requirements
 ### Linux
 - GCC 4.8.1
+- git
 - sh
 
 ### Windows
