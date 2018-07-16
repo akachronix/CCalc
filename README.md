@@ -50,3 +50,10 @@ Compiles on Linux and Windows with MinGW.
 ```sh linux-install.sh```
 
 - Success.
+
+## Help
+- If your terminal output looks something like this when running a compile script on Windows:
+```cygwin-compile.sh: line 2: $'\r': command not found```
+```cygwin-compile.sh: line 76: syntax error: unexpected end of file```
+open Notepad++. Open the file and go under Edit/EOL Conversions and change that to Unix.
+
