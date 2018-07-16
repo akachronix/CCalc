@@ -8,7 +8,7 @@ Compiles on Linux and Windows with MinGW.
 - sh
 
 ### Windows
-- MinGW (in PATH)
+- Cygwin or MinGW (in PATH)
 - Git
 
 ## Build (Linux)
@@ -16,10 +16,10 @@ Compiles on Linux and Windows with MinGW.
 ```git clone https://github.com/akachronix/CCalc.git```
 
 - Mark script as executable.
-```chmod +x compile.sh```
+```chmod +x linux-compile.sh```
 
 - Run script.
-```sh compile.sh```
+```sh linux-compile.sh```
 
 - Success.
 
@@ -31,8 +31,11 @@ Compiles on Linux and Windows with MinGW.
 
 - Open a Command Prompt where Git for Windows cloned the repository.
 
-- Run script.
-```compile.cmd```
+- Run script. (MinGW)
+```windows-compile.cmd```
+
+- Run script. (Cygwin)
+```sh cygwin-compile.sh```
 
 - Success.
 
@@ -41,9 +44,9 @@ Compiles on Linux and Windows with MinGW.
 ```git clone https://github.com/akachronix/CCalc.git```
 
 - Mark script as executable.
-```chmod +x install.sh```
+```chmod +x linux-install.sh```
 
 - Run script.
-```sh install.sh```
+```sh linux-install.sh```
 
 - Success.

@@ -20,9 +20,9 @@ void help()
 	std::cout << "--power     | puts x to the power of y (two arguments)" << std::endl;
 	std::cout << std::endl;
 	std::cout << "Geometry -" << std::endl;
-	std::cout << "--trapezoid | finds the area of a trapezoid (three arguments [base, 2nd base, height])" << std::endl;
-	std::cout << "--rectangle | (not implemented)" << std::endl;
-	std::cout << "--triangle  | (not implemented)" << std::endl;
+	std::cout << "--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height])" << std::endl;
+	std::cout << "--rectangle | finds the area of a rectangle (two arguments)   [length, width]" << std::endl;
+	std::cout << "--triangle  | finds the area of a triangle  (two arguments)   [base, height]" << std::endl;
 	std::cout << "--circle    | (not implemented)" << std::endl;
 	std::cout << "--square    | (not implemented)" << std::endl;
 	std::cout << std::endl;
@@ -309,6 +309,18 @@ int main(int argc, const char* argv[])
 		else if((strcmp(argv[1], "--trapezoid") == 0))
 		{
 			trapezoid_t shape = Trapezoid(atof(argv[2]), atof(argv[3]), atof(argv[4]));
+			std::cout << "Answer: " << shape.area << std::endl;
+		}
+		
+		else if((strcmp(argv[1], "--rectangle") == 0))
+		{
+			rectangle_t shape = Rectangle(atof(argv[2]), atof(argv[3]));
+			std::cout << "Answer: " << shape.area << std::endl;
+		}
+		
+		else if((strcmp(argv[1], "--triangle") == 0))
+		{
+			triangle_t shape = Triangle(atof(argv[2]), atof(argv[3]));
 			std::cout << "Answer: " << shape.area << std::endl;
 		}
 
