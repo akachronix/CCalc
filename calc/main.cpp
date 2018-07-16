@@ -30,54 +30,79 @@ void help()
 
 int main(int argc, const char* argv[])
 {
+	logger frontend_logger(loglevel_t::everything, "frontend.log");
+
 	// actual frontend
 	if(argc == 1)
 	{
-		std::cout << "cCalc v3.0" << std::endl;
-		std::cout << "(C) 2018 akachronix" << std::endl;
+		frontend_logger.just_print("cCalc v3.0\n");
+		frontend_logger.just_print("(C) 2018 akachronix\n");
 
-		std::cout << std::endl;
-
-		logger frontend_logger(loglevel_t::everything, "frontend.log");
+		// std::cout << std::endl;
+		frontend_logger.just_print("\n");
 
 		bool running = true;
+		
 		while(running)
 		{
-			std::cout << "1) Arithmetic" << std::endl;
-			std::cout << "2) Exponential" << std::endl;
-			std::cout << "3) Geometry" << std::endl;
-			std::cout << "4) Help" << std::endl;
-			std::cout << "5) Exit" << std::endl;
+			// std::cout << "1) Arithmetic" << std::endl;
+			// std::cout << "2) Exponential" << std::endl;
+			// std::cout << "3) Geometry" << std::endl;
+			// std::cout << "4) Help" << std::endl;
+			// std::cout << "5) Exit" << std::endl;
+			//
+			// std::cout << std::endl;
 
-			std::cout << std::endl;
+			frontend_logger.just_print("1) Arithmetic\n");
+			frontend_logger.just_print("2) Exponential\n");
+			frontend_logger.just_print("3) Geometry\n");
+			frontend_logger.just_print("4) Help\n");
+			frontend_logger.just_print("5) Exit\n");
+
+			frontend_logger.just_print("\n");
 
 			int option;
 			std::cin >> option;
 
-			std::cout << std::endl;
+			// std::cout << std::endl;
+			frontend_logger.just_print("\n");
 
 			if(option == 1)
 			{
-				std::cout << "1) Add" << std::endl;
-				std::cout << "2) Subtract" << std::endl;
-				std::cout << "3) Multiply" << std::endl;
-				std::cout << "4) Divide" << std::endl;
+				// std::cout << "1) Add" << std::endl;
+				// std::cout << "2) Subtract" << std::endl;
+				// std::cout << "3) Multiply" << std::endl;
+				// std::cout << "4) Divide" << std::endl;
+				//
+				// std::cout << std::endl;
 
-				std::cout << std::endl;
+				frontend_logger.just_print("1) Add\n");
+				frontend_logger.just_print("2) Subtract\n");
+				frontend_logger.just_print("3) Multiply\n");
+				frontend_logger.just_print("4) Divide\n");
+
+				frontend_logger.just_print("\n");
 
 				std::cin >> option;
 
-				std::cout << std::endl;
+				// std::cout << std::endl;
+				frontend_logger.just_print("\n");
 
 				double num1, num2;
 
-				std::cout << "Enter first number: ";
-				std::cin >> num1;
+				// std::cout << "Enter first number: ";
+				frontend_logger.just_print("Enter first number: ");
 
-				std::cout << "Enter second number: ";
+				std::cin >> num1;
+				frontend_logger.log_value("", num1);
+
+				// std::cout << "Enter second number: ";
+				frontend_logger.just_print("Enter second number: ");
+
 				std::cin >> num2;
 
-				std::cout << std::endl;
+				// std::cout << std::endl;
+				frontend_logger.just_print("\n");
 
 				switch(option)
 				{
@@ -141,16 +166,28 @@ int main(int argc, const char* argv[])
 
 			else if(option == 3)
 			{
-				std::cout << "1) Trapezoid" << std::endl;
-				std::cout << "2) Rectangle" << std::endl;
-				std::cout << "3) Triangle" << std::endl;
-				std::cout << "4) Circle" << std::endl;
-				std::cout << "5) Square" << std::endl;
+				// std::cout << "1) Trapezoid" << std::endl;
+				// std::cout << "2) Rectangle" << std::endl;
+				// std::cout << "3) Triangle" << std::endl;
+				// std::cout << "4) Circle" << std::endl;
+				// std::cout << "5) Square" << std::endl;
+				//
+				// std::cout << std::endl;
+				
+				frontend_logger.just_print("1) Trapezoid");
+				frontend_logger.just_print("2) Rectangle");
+				frontend_logger.just_print("3) Triangle");
+				frontend_logger.just_print("4) Circle");
+				frontend_logger.just_print("5) Square");
 
-				std::cout << std::endl;
+				frontend_logger.just_print("\n");
 
 				std::cin >> option;
-				std::cout << std::endl;
+				// frontend_logger.log("Option: " + (std::string)option);
+
+				// std::cout << std::endl;
+
+				frontend_logger.just_print("\n");
 
 				double area;
 
