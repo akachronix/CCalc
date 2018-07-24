@@ -36,6 +36,8 @@ int main(int argc, const char* argv[])
 {
 	logger frontend_logger(loglevel_t::everything, "ccalc-frontend.log");
 
+	frontend_logger >> "howdy!\n";
+
 	if(argc == 1)
 	{
 		frontend_logger.just_print("cCalc v3.0\n");
@@ -45,14 +47,15 @@ int main(int argc, const char* argv[])
 
 		bool running = true;
 		
-		while(running)
+		while (running)
 		{
 			frontend_logger.just_print("1) Arithmetic\n");
 			frontend_logger.just_print("2) Exponential\n");
 			frontend_logger.just_print("3) Geometry\n");
 			frontend_logger.just_print("4) Interpreter\n");
 			frontend_logger.just_print("5) Help\n");
-			frontend_logger.just_print("6) Exit\n");
+			frontend_logger.just_print("6) View Log\n");
+			frontend_logger.just_print("7) Exit\n");
 
 			frontend_logger.just_print("\n");
 
@@ -61,7 +64,7 @@ int main(int argc, const char* argv[])
 
 			frontend_logger.just_print("\n");
 
-			if(option == 1)
+			if (option == 1)
 			{
 				frontend_logger.just_print("1) Add\n");
 				frontend_logger.just_print("2) Subtract\n");
@@ -87,7 +90,7 @@ int main(int argc, const char* argv[])
 
 				frontend_logger.just_print("\n");
 
-				switch(option)
+				switch (option)
 				{
 				case 1:
 					std::cout << "Answer: " << add(num1, num2) << std::endl;
@@ -113,7 +116,7 @@ int main(int argc, const char* argv[])
 				std::cout << std::endl;
 			}
 
-			else if(option == 2)
+			else if (option == 2)
 			{
 				std::cout << "1) Power" << std::endl;
 
@@ -133,7 +136,7 @@ int main(int argc, const char* argv[])
 
 				std::cout << std::endl;
 
-				switch(option)
+				switch (option)
 				{
 				case 1:
 					std::cout << "Answer: " << power(num1, num2) << std::endl;
@@ -147,8 +150,8 @@ int main(int argc, const char* argv[])
 				std::cout << std::endl;
 			}
 
-			else if(option == 3)
-			{				
+			else if (option == 3)
+			{
 				frontend_logger.just_print("1) Trapezoid\n");
 				frontend_logger.just_print("2) Rectangle\n");
 				frontend_logger.just_print("3) Triangle\n");
@@ -165,7 +168,7 @@ int main(int argc, const char* argv[])
 
 				double area;
 
-				switch(option)
+				switch (option)
 				{
 				case 1:
 				{
@@ -184,46 +187,46 @@ int main(int argc, const char* argv[])
 
 					trapezoid_t shape = Trapezoid(base, base2, height);
 					area = shape.area;
-					
+
 					break;
 				}
-				
+
 				case 2:
 				{
 					double length, width;
-					
+
 					std::cout << "Enter length: ";
 					std::cin >> length;
-					
+
 					std::cout << "Enter width: ";
 					std::cin >> width;
-					
+
 					std::cout << std::endl;
-					
+
 					rectangle_t shape = Rectangle(length, width);
 					area = shape.area;
-					
+
 					break;
 				}
-				
+
 				case 3:
 				{
 					double base, height;
-					
+
 					frontend_logger.just_print("Enter base: ");
 					std::cin >> base;
-					
+
 					frontend_logger.just_print("Enter height: ");
 					std::cin >> height;
-					
+
 					frontend_logger.just_print("\n");
-					
+
 					triangle_t shape = Triangle(base, height);
 					area = shape.area;
-					
+
 					break;
 				}
-				
+
 				case 4:
 				{
 					double radius;
@@ -250,7 +253,7 @@ int main(int argc, const char* argv[])
 
 					square_t shape = Square(side);
 					area = shape.area;
-					
+
 					break;
 				}
 
@@ -294,35 +297,41 @@ int main(int argc, const char* argv[])
 					frontend_logger.log_error("Invalid input.");
 					break;
 				}
-				
-				if(option > 0 && option <= 5)
+
+				if (option > 0 && option <= 5)
 				{
 					std::cout << "Area: " << area << std::endl;
 				}
 
-				else if(option > 5 && option <= 7)
+				else if (option > 5 && option <= 7)
 				{
 					std::cout << "Volume: " << area << std::endl;
 				}
 
 				// frontend_logger.log_value("Area: ", area);
-				
+
 				frontend_logger.just_print("\n");
 			}
 
-			else if(option == 4)
+			else if (option == 4)
 			{
 				// Interpreter mode is planned here. Pending reconstruction of codebase.
 				frontend_logger.just_print("Interpreter mode is planned here. Pending reconstruction of codebase.\n");
 				frontend_logger.just_print("Or maybe when I feel like adding it.\n\n");
 			}
 
-			else if(option == 5)
+			else if (option == 5)
 			{
 				help(frontend_logger);
+				frontend_logger.just_print("\n");
 			}
 
-			else if(option == 6)
+			else if (option == 6)
+			{
+				std::cout << frontend_logger;
+			}
+
+			else if (option == 7)
 			{
 				running = false;
 			}

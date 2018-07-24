@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <istream>
+#include <ostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -25,6 +28,9 @@ public:
     
     // when object is deconstructed, all log history is flushed from the vector into a log file
     ~logger();
+
+	/* friend std::ostream& operator<<(std::ostream& os, const logger& log);
+	 * friend std::istream& operator>>(std::istream& is, const logger& log); */ 
 
     // logging functions
     bool log_error(std::string error_str);

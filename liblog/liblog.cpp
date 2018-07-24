@@ -1,6 +1,8 @@
 #include "liblog.hpp"
 
 #include <iostream>
+#include <istream>
+#include <ostream>
 #include <sstream>
 #include <string>
 
@@ -26,6 +28,26 @@ logger::~logger()
 {
     dump_log(m_logfile);
 }
+
+//std::ostream& logger::operator<<(std::ostream& os, const logger& log)
+//{
+//	for (auto x : log.log_history)
+//	{
+//		os << x;
+//	}
+//
+//	return os;
+//}
+//
+//std::istream& logger::operator>>(std::istream& is, logger& log)
+//{
+//	std::string input = BLANK_STR;
+//	is >> input;
+//	
+//	log.just_print(input);
+//	
+//	return is;
+//}
 
 bool logger::log_error(std::string error_str)
 {
