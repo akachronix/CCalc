@@ -168,20 +168,22 @@ bool logger::just_print(std::string print_str)
 
 bool logger::dump_log(std::string file)
 {
-    std::ofstream log_file;
-    log_file.open(file);
-
-    if(log_file.is_open())
+    if(log_history.size() != 0)
     {
-        for(auto x : log_history)
+        std::ofstream log_file;
+        log_file.open(file);
+
+        if(log_file.is_open())
         {
-            log_file << x;
+            for(auto x : log_history)
+            {
+                log_file << x;
+            }
+            
+            log_file.close();
+
+            return true;
         }
-        
-        log_file.close();
-
-        return true;
     }
-
     return false;
 }
