@@ -9,73 +9,44 @@ using namespace libmath;
 
 void help(logger& log)
 {
-	/*
-	std::cout << "Usage:" << std::endl;
-	std::cout << "Arithmetic -" << std::endl;
-	std::cout << "--add       | adds two numbers (two arguments)" << std::endl;
-	std::cout << "--subtract  | subtracts two numbers (two arguments)" << std::endl;
-	std::cout << "--multiply  | multiplies two numbers (two arguments)" << std::endl;
-	std::cout << "--divide    | divides two numbers (two arguments)" << std::endl;
-	std::cout << std::endl;
-	std::cout << "Exponential -" << std::endl;
-	std::cout << "--power     | puts x to the power of y (two arguments)" << std::endl;
-	std::cout << std::endl;
-	std::cout << "Geometry -" << std::endl;
-	std::cout << "--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height])" << std::endl;
-	std::cout << "--rectangle | finds the area of a rectangle (two arguments)   [length, width]" << std::endl;
-	std::cout << "--triangle  | finds the area of a triangle  (two arguments)   [base, height]" << std::endl;
-	std::cout << "--circle    | finds the area of a circle    (one argument)    [radius]" << std::endl;
-	std::cout << "--square    | finds the area of a square    (one argument)    [side]" << std::endl;
-	std::cout << std::endl; 
-	*/
-
 	log.just_print("Usage:\n");
 	log.just_print("Arithmetic -\n");
-	log.just_print("--add       | adds two numbers (two arguments)\n");
-	log.just_print("--subtract  | subtracts two numbers (two arguments)\n");
-	log.just_print("--multiply  | multiplies two numbers (two arguments)\n");
-	log.just_print("--divide    | divides two numbers (two arguments)\n");
+	log.just_print("--add | adds two numbers (two arguments)\n");
+	log.just_print("--subtract | subtracts two numbers (two arguments)\n");
+	log.just_print("--multiply | multiplies two numbers (two arguments)\n");
+	log.just_print("--divide | divides two numbers (two arguments)\n");
 	log.just_print("\n");
 	log.just_print("Exponential -\n");
-	log.just_print("--power     | puts x to the power of y (two arguments)\n");
+	log.just_print("--power | puts x to the power of y (two arguments)\n");
 	log.just_print("\n");
-	log.just_print("Geometry -\n");
-	log.just_print("--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height])\n");
+	log.just_print("Geometry (2D) -\n");
+	log.just_print("--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height]\n");
 	log.just_print("--rectangle | finds the area of a rectangle (two arguments) [length, width]\n");
-	log.just_print("--triangle  | finds the area of a triangle (two arguments) [base, height]\n");
-	log.just_print("--circle    | finds the area of a circle (one argument) [radius]\n");
-	log.just_print("--square    | finds the area of a square (one argument) [side]\n");
+	log.just_print("--triangle | finds the area of a triangle (two arguments) [base, height]\n");
+	log.just_print("--circle | finds the area of a circle (one argument) [radius]\n");
+	log.just_print("--square | finds the area of a square (one argument) [side]\n");
 	log.just_print("\n");
-
-	// testing
-	// log.just_print("it worked!\n");
+	log.just_print("Geometry (3D) -\n");
+	log.just_print("--rectangular-prism | finds the volume of a rectangular prism (three arguments) [length, width, height]\n");
+	log.just_print("--cube | finds the volume of a cube (one argument) [face]");
+	log.just_print("\n");
 }
 
 int main(int argc, const char* argv[])
 {
 	logger frontend_logger(loglevel_t::everything, "frontend.log");
 
-	// actual frontend
 	if(argc == 1)
 	{
 		frontend_logger.just_print("cCalc v3.0\n");
 		frontend_logger.just_print("(C) 2018 akachronix\n");
 
-		// std::cout << std::endl;
 		frontend_logger.just_print("\n");
 
 		bool running = true;
 		
 		while(running)
 		{
-			// std::cout << "1) Arithmetic" << std::endl;
-			// std::cout << "2) Exponential" << std::endl;
-			// std::cout << "3) Geometry" << std::endl;
-			// std::cout << "4) Help" << std::endl;
-			// std::cout << "5) Exit" << std::endl;
-			//
-			// std::cout << std::endl;
-
 			frontend_logger.just_print("1) Arithmetic\n");
 			frontend_logger.just_print("2) Exponential\n");
 			frontend_logger.just_print("3) Geometry\n");
@@ -88,18 +59,10 @@ int main(int argc, const char* argv[])
 			int option;
 			std::cin >> option;
 
-			// std::cout << std::endl;
 			frontend_logger.just_print("\n");
 
 			if(option == 1)
 			{
-				// std::cout << "1) Add" << std::endl;
-				// std::cout << "2) Subtract" << std::endl;
-				// std::cout << "3) Multiply" << std::endl;
-				// std::cout << "4) Divide" << std::endl;
-				//
-				// std::cout << std::endl;
-
 				frontend_logger.just_print("1) Add\n");
 				frontend_logger.just_print("2) Subtract\n");
 				frontend_logger.just_print("3) Multiply\n");
@@ -109,23 +72,19 @@ int main(int argc, const char* argv[])
 
 				std::cin >> option;
 
-				// std::cout << std::endl;
 				frontend_logger.just_print("\n");
 
 				double num1, num2;
 
-				// std::cout << "Enter first number: ";
 				frontend_logger.just_print("Enter first number: ");
 
 				std::cin >> num1;
 				frontend_logger.log_value("", num1);
 
-				// std::cout << "Enter second number: ";
 				frontend_logger.just_print("Enter second number: ");
 
 				std::cin >> num2;
 
-				// std::cout << std::endl;
 				frontend_logger.just_print("\n");
 
 				switch(option)
@@ -189,27 +148,18 @@ int main(int argc, const char* argv[])
 			}
 
 			else if(option == 3)
-			{
-				// std::cout << "1) Trapezoid" << std::endl;
-				// std::cout << "2) Rectangle" << std::endl;
-				// std::cout << "3) Triangle" << std::endl;
-				// std::cout << "4) Circle" << std::endl;
-				// std::cout << "5) Square" << std::endl;
-				//
-				// std::cout << std::endl;
-				
+			{				
 				frontend_logger.just_print("1) Trapezoid\n");
 				frontend_logger.just_print("2) Rectangle\n");
 				frontend_logger.just_print("3) Triangle\n");
 				frontend_logger.just_print("4) Circle\n");
 				frontend_logger.just_print("5) Square\n");
-				frontend_logger.just_print("6) Cube\n");
+				frontend_logger.just_print("6) Rectangular Prism\n");
+				frontend_logger.just_print("7) Cube\n");
 
 				frontend_logger.just_print("\n");
 
 				std::cin >> option;
-				// frontend_logger.log("Option: " + (std::string)option);
-				// std::cout << std::endl;
 
 				frontend_logger.just_print("\n");
 
@@ -306,6 +256,27 @@ int main(int argc, const char* argv[])
 
 				case 6:
 				{
+					double length, width, height;
+
+					frontend_logger.just_print("Enter length: ");
+					std::cin >> length;
+
+					frontend_logger.just_print("Enter width: ");
+					std::cin >> width;
+
+					frontend_logger.just_print("Enter height: ");
+					std::cin >> height;
+
+					frontend_logger.just_print("\n");
+
+					rectangular_prism_t shape = Rectangular_Prism(length, width, height);
+					area = shape.area;
+
+					break;
+				}
+
+				case 7:
+				{
 					double face;
 
 					frontend_logger.just_print("Enter side: ");
@@ -324,7 +295,16 @@ int main(int argc, const char* argv[])
 					break;
 				}
 				
-				std::cout << "Area: " << area << std::endl;
+				if(option > 0 && option <= 5)
+				{
+					std::cout << "Area: " << area << std::endl;
+				}
+
+				else if(option > 5 && option <= 7)
+				{
+					std::cout << "Volume: " << area << std::endl;
+				}
+
 				// frontend_logger.log_value("Area: ", area);
 				
 				frontend_logger.just_print("\n");
@@ -333,7 +313,8 @@ int main(int argc, const char* argv[])
 			else if(option == 4)
 			{
 				// Interpreter mode is planned here. Pending reconstruction of codebase.
-				frontend_logger.just_print("Interpreter mode is planned here. Pending reconstruction of codebase.\n\n");
+				frontend_logger.just_print("Interpreter mode is planned here. Pending reconstruction of codebase.\n");
+				frontend_logger.just_print("Or maybe when I feel like adding it.\n\n");
 			}
 
 			else if(option == 5)
@@ -409,6 +390,12 @@ int main(int argc, const char* argv[])
 		else if((strcmp(argv[1], "--square")) == 0)
 		{
 			square_t shape = Square(atof(argv[2]));
+			std::cout << "Answer: " << shape.area << std::endl;
+		}
+
+		else if((strcmp(argv[1], "--rectangular-prism")) == 0)
+		{
+			rectangular_prism_t shape = Rectangular_Prism(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			std::cout << "Answer: " << shape.area << std::endl;
 		}
 
