@@ -23,8 +23,8 @@ void help()
 	std::cout << "--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height])" << std::endl;
 	std::cout << "--rectangle | finds the area of a rectangle (two arguments)   [length, width]" << std::endl;
 	std::cout << "--triangle  | finds the area of a triangle  (two arguments)   [base, height]" << std::endl;
-	std::cout << "--circle    | (not implemented)" << std::endl;
-	std::cout << "--square    | (not implemented)" << std::endl;
+	std::cout << "--circle    | finds the area of a circle    (one argument)    [radius]" << std::endl;
+	std::cout << "--square    | finds the area of a square    (one argument)    [side]" << std::endl;
 	std::cout << std::endl;
 }
 
@@ -56,8 +56,9 @@ int main(int argc, const char* argv[])
 			frontend_logger.just_print("1) Arithmetic\n");
 			frontend_logger.just_print("2) Exponential\n");
 			frontend_logger.just_print("3) Geometry\n");
-			frontend_logger.just_print("4) Help\n");
-			frontend_logger.just_print("5) Exit\n");
+			frontend_logger.just_print("4) Interpreter\n");
+			frontend_logger.just_print("5) Help\n");
+			frontend_logger.just_print("6) Exit\n");
 
 			frontend_logger.just_print("\n");
 
@@ -236,13 +237,13 @@ int main(int argc, const char* argv[])
 				{
 					double base, height;
 					
-					std::cout << "Enter base: ";
+					frontend_logger.just_print("Enter base: ");
 					std::cin >> base;
 					
-					std::cout << "Enter height: ";
+					frontend_logger.just_print("Enter height: ")
 					std::cin >> height;
 					
-					std::cout << std::endl;
+					frontend_logger.just_print("\n");
 					
 					triangle_t shape = Triangle(base, height);
 					area = shape.area;
@@ -287,15 +288,21 @@ int main(int argc, const char* argv[])
 				
 				std::cout << "Area: " << area << std::endl;
 				
-				std::cout << std::endl;
+				frontend_logger.just_print("\n";)
 			}
 
 			else if(option == 4)
 			{
-				help();
+				// Interpreter mode is planned here. Pending reconstruction of codebase.
+				frontend_logger.just_print("Interpreter mode is planned here. Pending reconstruction of codebase.\n\n");
 			}
 
 			else if(option == 5)
+			{
+				help();
+			}
+
+			else if(option == 6)
 			{
 				running = false;
 			}
@@ -312,6 +319,7 @@ int main(int argc, const char* argv[])
 		{
 			terminal_logger.log_error("Invalid command.");
 			help();
+
 			return -1;
 		}
 
@@ -361,6 +369,18 @@ int main(int argc, const char* argv[])
 			std::cout << "Answer: " << shape.area << std::endl;
 		}
 
+		else if((strcmp(argv[1], "--circle")) == 0)
+		{
+			circle_t shape = Circle(atof(argv[2]));
+			std::cout << "Answer: " << shape.area << std::endl;
+		}
+
+		else if((strcmp(argv[1], "--square")) == 0)
+		{
+			square_t shape = Square(atof(argv[2]));
+			std::cout << "Answer: " << shape.area << std::endl;
+		}
+
 		else if((strcmp(argv[1], "--help") == 0))
 		{
 			help();
@@ -370,6 +390,8 @@ int main(int argc, const char* argv[])
 		{
 			terminal_logger.log_error("Invalid command.");
 			help();
+
+			return -1;
 		}
 	}
 
