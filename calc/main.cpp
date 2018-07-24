@@ -7,8 +7,9 @@ using namespace libmath;
 
 #include "liblog.hpp"
 
-void help()
+void help(logger& log)
 {
+	/*
 	std::cout << "Usage:" << std::endl;
 	std::cout << "Arithmetic -" << std::endl;
 	std::cout << "--add       | adds two numbers (two arguments)" << std::endl;
@@ -25,7 +26,29 @@ void help()
 	std::cout << "--triangle  | finds the area of a triangle  (two arguments)   [base, height]" << std::endl;
 	std::cout << "--circle    | finds the area of a circle    (one argument)    [radius]" << std::endl;
 	std::cout << "--square    | finds the area of a square    (one argument)    [side]" << std::endl;
-	std::cout << std::endl;
+	std::cout << std::endl; 
+	*/
+
+	log.just_print("Usage:\n");
+	log.just_print("Arithmetic -\n");
+	log.just_print("--add       | adds two numbers (two arguments)\n");
+	log.just_print("--subtract  | subtracts two numbers (two arguments)\n");
+	log.just_print("--multiply  | multiplies two numbers (two arguments)\n");
+	log.just_print("--divide    | divides two numbers (two arguments)\n");
+	log.just_print("\n");
+	log.just_print("Exponential -\n");
+	log.just_print("--power     | puts x to the power of y (two arguments)\n");
+	log.just_print("\n");
+	log.just_print("Geometry -\n");
+	log.just_print("--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height])\n");
+	log.just_print("--rectangle | finds the area of a rectangle (two arguments) [length, width]\n");
+	log.just_print("--triangle  | finds the area of a triangle (two arguments) [base, height]\n");
+	log.just_print("--circle    | finds the area of a circle (one argument) [radius]\n");
+	log.just_print("--square    | finds the area of a square (one argument) [side]\n");
+	log.just_print("\n");
+
+	// testing
+	// log.just_print("it worked!\n");
 }
 
 int main(int argc, const char* argv[])
@@ -175,17 +198,17 @@ int main(int argc, const char* argv[])
 				//
 				// std::cout << std::endl;
 				
-				frontend_logger.just_print("1) Trapezoid");
-				frontend_logger.just_print("2) Rectangle");
-				frontend_logger.just_print("3) Triangle");
-				frontend_logger.just_print("4) Circle");
-				frontend_logger.just_print("5) Square");
+				frontend_logger.just_print("1) Trapezoid\n");
+				frontend_logger.just_print("2) Rectangle\n");
+				frontend_logger.just_print("3) Triangle\n");
+				frontend_logger.just_print("4) Circle\n");
+				frontend_logger.just_print("5) Square\n");
+				frontend_logger.just_print("6) Cube\n");
 
 				frontend_logger.just_print("\n");
 
 				std::cin >> option;
 				// frontend_logger.log("Option: " + (std::string)option);
-
 				// std::cout << std::endl;
 
 				frontend_logger.just_print("\n");
@@ -240,7 +263,7 @@ int main(int argc, const char* argv[])
 					frontend_logger.just_print("Enter base: ");
 					std::cin >> base;
 					
-					frontend_logger.just_print("Enter height: ")
+					frontend_logger.just_print("Enter height: ");
 					std::cin >> height;
 					
 					frontend_logger.just_print("\n");
@@ -281,14 +304,30 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
+				case 6:
+				{
+					double face;
+
+					frontend_logger.just_print("Enter side: ");
+					std::cin >> face;
+
+					frontend_logger.just_print("\n");
+
+					cube_t shape = Cube(face);
+					area = shape.area;
+
+					break;
+				}
+
 				default:
 					frontend_logger.log_error("Invalid input.");
 					break;
 				}
 				
 				std::cout << "Area: " << area << std::endl;
+				// frontend_logger.log_value("Area: ", area);
 				
-				frontend_logger.just_print("\n";)
+				frontend_logger.just_print("\n");
 			}
 
 			else if(option == 4)
@@ -299,7 +338,7 @@ int main(int argc, const char* argv[])
 
 			else if(option == 5)
 			{
-				help();
+				help(frontend_logger);
 			}
 
 			else if(option == 6)
@@ -314,14 +353,6 @@ int main(int argc, const char* argv[])
 	else if(argc > 0)
 	{
 		logger terminal_logger(loglevel_t::everything, "terminal.log");
-
-		if(argc <= 2)
-		{
-			terminal_logger.log_error("Invalid command.");
-			help();
-
-			return -1;
-		}
 
 		double num1 = atof(argv[2]);
 		double num2 = atof(argv[3]);
@@ -381,15 +412,21 @@ int main(int argc, const char* argv[])
 			std::cout << "Answer: " << shape.area << std::endl;
 		}
 
+		else if((strcmp(argv[1], "--cube")) == 0)
+		{
+			cube_t shape = Cube(atof(argv[2]));
+			std::cout << "Answer: " << shape.area << std::endl;
+		}
+
 		else if((strcmp(argv[1], "--help") == 0))
 		{
-			help();
+			help(terminal_logger);
 		}
 
 		else
 		{
 			terminal_logger.log_error("Invalid command.");
-			help();
+			help(terminal_logger);
 
 			return -1;
 		}
