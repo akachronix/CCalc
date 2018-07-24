@@ -1,10 +1,14 @@
 #pragma once
 
+// 2D shapes
 typedef struct {double side1, side2, height, area;} trapezoid_t;
 typedef struct {double length, width, area;} rectangle_t;
 typedef struct {double base, height, area;} triangle_t;
 typedef struct {double radius, area;} circle_t;
 typedef struct {double side, area;} square_t;
+
+// 3D shapes
+typedef struct {double length, width, height, area;} rectangular_prism_t;
 typedef struct {double face, area;} cube_t;
 
 namespace libmath
@@ -15,10 +19,14 @@ namespace libmath
 	double divide(double x, double y);
 	double power(double base, double exponent);
 
+	// 2D Shapes
 	trapezoid_t Trapezoid(double side1, double side2, double height);
 	rectangle_t Rectangle(double length, double height);
 	triangle_t Triangle(double base, double height);
 	circle_t Circle(double radius);
 	square_t Square(double side);
+
+	// 3D shapes
+	rectangular_prism_t Rectangular_Prism(double length, double width, double height);
 	cube_t Cube(double face);
 }
