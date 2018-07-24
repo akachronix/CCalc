@@ -34,7 +34,7 @@ void help(logger& log)
 
 int main(int argc, const char* argv[])
 {
-	logger frontend_logger(loglevel_t::everything, "frontend.log");
+	logger frontend_logger(loglevel_t::everything, "ccalc-frontend.log");
 
 	if(argc == 1)
 	{
@@ -333,7 +333,7 @@ int main(int argc, const char* argv[])
 
 	else if(argc > 0)
 	{
-		logger terminal_logger(loglevel_t::everything, "terminal.log");
+		logger terminal_logger(loglevel_t::everything, "ccalc-terminal.log");
 
 		double num1 = atof(argv[2]);
 		double num2 = atof(argv[3]);
