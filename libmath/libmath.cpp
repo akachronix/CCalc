@@ -63,4 +63,10 @@ namespace libmath
 		square_t obj = {side, side * side};
 		return obj;
 	}
+
+	cube_t Cube(double face)
+	{
+		cube_t obj = {face, face * face * face};
+		return obj;
+	}
 }
