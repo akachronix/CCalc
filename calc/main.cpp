@@ -50,10 +50,10 @@ int main(int argc, const char* argv[])
 			frontend_logger.just_print("1) Arithmetic\n");
 			frontend_logger.just_print("2) Exponential\n");
 			frontend_logger.just_print("3) Geometry\n");
-			frontend_logger.just_print("4) Interpreter\n");
-			frontend_logger.just_print("5) Help\n");
-			frontend_logger.just_print("6) View Log\n");
-			frontend_logger.just_print("7) Exit\n");
+			//frontend_logger.just_print("4) Interpreter\n");
+			frontend_logger.just_print("4) Help\n");
+			//frontend_logger.just_print("6) View Log\n");
+			frontend_logger.just_print("5) Exit\n");
 
 			frontend_logger.just_print("\n");
 
@@ -311,25 +311,25 @@ int main(int argc, const char* argv[])
 				frontend_logger.just_print("\n");
 			}
 
-			else if (option == 4)
+			/* else if (option == 4)
 			{
 				// Interpreter mode is planned here. Pending reconstruction of codebase.
 				frontend_logger.just_print("Interpreter mode is planned here. Pending reconstruction of codebase.\n");
 				frontend_logger.just_print("Or maybe when I feel like adding it.\n\n");
-			}
+			} */
 
-			else if (option == 5)
+			else if (option == 4)
 			{
 				help(frontend_logger);
 				frontend_logger.just_print("\n");
 			}
 
-			else if (option == 6)
+			/* else if (option == 6)
 			{
-				// std::cout << frontend_logger;
-			}
+				// frontend_logger.dump_log(stdout);
+			} */
 
-			else if (option == 7)
+			else if (option == 5)
 			{
 				running = false;
 			}
