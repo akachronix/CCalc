@@ -38,7 +38,7 @@ int main(int argc, const char* argv[])
 
 	if(argc == 1)
 	{
-		frontend_logger.just_print("cCalc v3.0\n");
+		frontend_logger.just_print("cCalc v3.1\n");
 		frontend_logger.just_print("(C) 2018 akachronix\n");
 
 		frontend_logger.just_print("\n");
