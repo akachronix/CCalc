@@ -36,8 +36,6 @@ int main(int argc, const char* argv[])
 {
 	logger frontend_logger(loglevel_t::everything, "ccalc-frontend.log");
 
-	frontend_logger >> "howdy!\n";
-
 	if(argc == 1)
 	{
 		frontend_logger.just_print("cCalc v3.0\n");
@@ -328,7 +326,7 @@ int main(int argc, const char* argv[])
 
 			else if (option == 6)
 			{
-				std::cout << frontend_logger;
+				// std::cout << frontend_logger;
 			}
 
 			else if (option == 7)
