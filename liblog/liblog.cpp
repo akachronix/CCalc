@@ -4,7 +4,9 @@
 #include <istream>
 #include <ostream>
 #include <sstream>
+#include <fstream>
 #include <string>
+#include <vector>
 
 logger::logger(loglevel_t loglevel, std::string logfile)
 {
