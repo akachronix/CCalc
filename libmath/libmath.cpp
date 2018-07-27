@@ -34,6 +34,7 @@ namespace libmath
 		return answer;
 	}
 
+	// 2D Shapes
 	trapezoid_t Trapezoid(double side1, double side2, double height)
 	{
 		trapezoid_t obj = {side1, side2, height, (side1 + side2) / 2 * height};
@@ -61,6 +62,19 @@ namespace libmath
 	square_t Square(double side)
 	{
 		square_t obj = {side, side * side};
+		return obj;
+	}
+
+	// 3D Shapes
+	rectangular_prism_t Rectangular_Prism(double length, double width, double height)
+	{
+		rectangular_prism_t obj = {length, width, height, length * width * height};
+		return obj;
+	}
+
+	cube_t Cube(double face)
+	{
+		cube_t obj = {face, face * face * face};
 		return obj;
 	}
 }
