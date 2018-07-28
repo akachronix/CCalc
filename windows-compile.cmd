@@ -20,10 +20,10 @@ echo [LOG] Linking liblog into shared library.
 g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -shared -o bin/liblog.dll liblog.o
 
 echo [LOG] Linking frontend with library into applet.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -o bin/calc.exe main.o -lmath -llog -lstdc++
+g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -o bin/ccalc.exe main.o -lmath -llog -lstdc++
 
 echo [LOG] Making PE binary for portability.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -o bin/calc_pe.exe main.o libmath.o liblog.o -static
+g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -o bin/ccalc_pe.exe main.o libmath.o liblog.o -static
 
 IF NOT EXIST obj\ goto OBJ_NOT_EXIST
 IF EXIST obj\ goto OBJ_EXIST
