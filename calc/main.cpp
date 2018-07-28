@@ -182,19 +182,27 @@ int main(int argc, const char* argv[])
 				{
 					double base, base2, height;
 
-					std::cout << "Enter base: ";
+					frontend_logger.just_print("Enter base: ");
 					std::cin >> base;
 
-					std::cout << "Enter base 2: ";
+					frontend_logger.log_value("", base);
+
+					frontend_logger.just_print("Enter base 2: ");
 					std::cin >> base2;
 
-					std::cout << "Enter height: ";
+					frontend_logger.log_value("", base2);
+
+					frontend_logger.just_print("Enter height: ");
 					std::cin >> height;
 
-					std::cout << std::endl;
+					frontend_logger.log_value("", height);
+
+					frontend_logger.just_print("\n");
 
 					trapezoid_t shape = Trapezoid(base, base2, height);
 					area = shape.area;
+
+					frontend_logger.log_value("", shape.area);
 
 					break;
 				}
@@ -203,16 +211,22 @@ int main(int argc, const char* argv[])
 				{
 					double length, width;
 
-					std::cout << "Enter length: ";
+					frontend_logger.just_print("Enter length: ");
 					std::cin >> length;
 
-					std::cout << "Enter width: ";
+					frontend_logger.log_value("", length);
+
+					frontend_logger.just_print("Enter width: ");
 					std::cin >> width;
 
-					std::cout << std::endl;
+					frontend_logger.log_value("", width);
+
+					frontend_logger.just_print("\n");
 
 					rectangle_t shape = Rectangle(length, width);
 					area = shape.area;
+
+					frontend_logger.log_value("", shape.area);
 
 					break;
 				}
