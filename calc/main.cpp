@@ -38,7 +38,7 @@ int main(int argc, const char* argv[])
 
 	if(argc == 1)
 	{
-		frontend_logger.just_print("cCalc v3.1\n");
+		frontend_logger.just_print("cCalc v3.2\n");
 		frontend_logger.just_print("(C) 2018 akachronix\n");
 
 		frontend_logger.just_print("\n");
@@ -60,6 +60,8 @@ int main(int argc, const char* argv[])
 			int option;
 			std::cin >> option;
 
+			frontend_logger.log_value("", option);
+
 			frontend_logger.just_print("\n");
 
 			if (option == 1)
@@ -72,6 +74,7 @@ int main(int argc, const char* argv[])
 				frontend_logger.just_print("\n");
 
 				std::cin >> option;
+				frontend_logger.log_value("", option);
 
 				frontend_logger.just_print("\n");
 
@@ -85,6 +88,7 @@ int main(int argc, const char* argv[])
 				frontend_logger.just_print("Enter second number: ");
 
 				std::cin >> num2;
+				frontend_logger.log_value("", num2);
 
 				frontend_logger.just_print("\n");
 
@@ -121,6 +125,7 @@ int main(int argc, const char* argv[])
 				std::cout << std::endl;
 
 				std::cin >> option;
+				frontend_logger.log_value("", option);
 
 				std::cout << std::endl;
 
@@ -129,8 +134,12 @@ int main(int argc, const char* argv[])
 				std::cout << "Enter first number: ";
 				std::cin >> num1;
 
+				frontend_logger.log_value("", num1);
+
 				std::cout << "Enter second number: ";
 				std::cin >> num2;
+
+				frontend_logger.log_value("", num2);
 
 				std::cout << std::endl;
 
@@ -161,6 +170,7 @@ int main(int argc, const char* argv[])
 				frontend_logger.just_print("\n");
 
 				std::cin >> option;
+				frontend_logger.log_value("", option);
 
 				frontend_logger.just_print("\n");
 
@@ -299,14 +309,14 @@ int main(int argc, const char* argv[])
 				if (option > 0 && option <= 5)
 				{
 					std::cout << "Area: " << area << std::endl;
+					frontend_logger.log_value("Area: ", area);
 				}
 
 				else if (option > 5 && option <= 7)
 				{
 					std::cout << "Volume: " << area << std::endl;
+					frontend_logger.log_value("Volume: ", area);
 				}
-
-				// frontend_logger.log_value("Area: ", area);
 
 				frontend_logger.just_print("\n");
 			}
@@ -348,68 +358,80 @@ int main(int argc, const char* argv[])
 		if((strcmp(argv[1], "--add") == 0) || (strcmp(argv[1], "-a") == 0))
 		{
 			std::cout << "Answer: " << add(num1, num2) << std::endl;
+			terminal_logger.log_value("Answer: ", add(num1, num2));
 		}
 
 		else if((strcmp(argv[1], "--subtract") == 0) || (strcmp(argv[1], "-s") == 0))
 		{
 			std::cout << "Answer: " << subtract(num1, num2) << std::endl;
+			terminal_logger.log_value("Answer: ", subtract(num1, num2));
 		}
 
 		else if((strcmp(argv[1], "--multiply") == 0) || (strcmp(argv[1], "-m") == 0))
 		{
 			std::cout << "Answer: " << multiply(num1, num2) << std::endl;
+			terminal_logger.log_value("Answer: ", multiply(num1, num2));
 		}
 
 		else if((strcmp(argv[1], "--divide") == 0) || (strcmp(argv[1], "-d") == 0))
 		{
 			std::cout << "Answer: " << divide(num1, num2) << std::endl;
+			terminal_logger.log_value("Answer: ", divide(num1, num2));
 		}
 
 		else if((strcmp(argv[1], "--power") == 0) || (strcmp(argv[1], "-p") == 0))
 		{
 			std::cout << "Answer: " << power(num1, num2) << std::endl;
+			terminal_logger.log_value("Answer: ", power(num1, num2));
 		}
 
 		else if((strcmp(argv[1], "--trapezoid") == 0))
 		{
 			trapezoid_t shape = Trapezoid(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
 		}
 		
 		else if((strcmp(argv[1], "--rectangle") == 0))
 		{
 			rectangle_t shape = Rectangle(atof(argv[2]), atof(argv[3]));
 			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
 		}
 		
 		else if((strcmp(argv[1], "--triangle") == 0))
 		{
 			triangle_t shape = Triangle(atof(argv[2]), atof(argv[3]));
 			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
 		}
 
 		else if((strcmp(argv[1], "--circle")) == 0)
 		{
 			circle_t shape = Circle(atof(argv[2]));
 			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
 		}
 
 		else if((strcmp(argv[1], "--square")) == 0)
 		{
 			square_t shape = Square(atof(argv[2]));
 			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
 		}
 
 		else if((strcmp(argv[1], "--rectangular-prism")) == 0)
 		{
 			rectangular_prism_t shape = Rectangular_Prism(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
 		}
 
 		else if((strcmp(argv[1], "--cube")) == 0)
 		{
 			cube_t shape = Cube(atof(argv[2]));
 			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
 		}
 
 		else if((strcmp(argv[1], "--help") == 0))
