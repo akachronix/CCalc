@@ -96,18 +96,22 @@ int main(int argc, const char* argv[])
 				{
 				case 1:
 					std::cout << "Answer: " << add(num1, num2) << std::endl;
+					frontend_logger.log_value("Answer: ", add(num1, num2));
 					break;
 
 				case 2:
 					std::cout << "Answer: " << subtract(num1, num2) << std::endl;
+					frontend_logger.log_value("Answer: ", subtract(num1, num2));
 					break;
 
 				case 3:
 					std::cout << "Answer: " << multiply(num1, num2) << std::endl;
+					frontend_logger.log_value("Answer: ", multiply(num1, num2));
 					break;
 
 				case 4:
 					std::cout << "Answer: " << divide(num1, num2) << std::endl;
+					frontend_logger.log_value("Answer: ", divide(num1, num2));
 					break;
 
 				default:
@@ -115,38 +119,39 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
-				std::cout << std::endl;
+				frontend_logger.just_print("\n");
 			}
 
 			else if (option == 2)
 			{
-				std::cout << "1) Power" << std::endl;
+				frontend_logger.just_print("1) Power\n");
 
-				std::cout << std::endl;
+				frontend_logger.just_print("\n");
 
 				std::cin >> option;
 				frontend_logger.log_value("", option);
 
-				std::cout << std::endl;
+				frontend_logger.just_print("\n");
 
 				double num1, num2;
 
-				std::cout << "Enter first number: ";
+				frontend_logger.just_print("Enter first number: ");
 				std::cin >> num1;
 
 				frontend_logger.log_value("", num1);
 
-				std::cout << "Enter second number: ";
+				frontend_logger.just_print("Enter second number: ");
 				std::cin >> num2;
 
 				frontend_logger.log_value("", num2);
 
-				std::cout << std::endl;
+				frontend_logger.just_print("\n");
 
 				switch (option)
 				{
 				case 1:
 					std::cout << "Answer: " << power(num1, num2) << std::endl;
+					frontend_logger.log_value("Answer: ", power(num1, num2));
 					break;
 
 				default:
@@ -154,7 +159,7 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
-				std::cout << std::endl;
+				frontend_logger.just_print("\n");
 			}
 
 			else if (option == 3)
@@ -201,8 +206,6 @@ int main(int argc, const char* argv[])
 
 					trapezoid_t shape = Trapezoid(base, base2, height);
 					area = shape.area;
-
-					frontend_logger.log_value("", shape.area);
 
 					break;
 				}
@@ -253,10 +256,12 @@ int main(int argc, const char* argv[])
 				{
 					double radius;
 
-					std::cout << "Enter radius: ";
+					frontend_logger.just_print("Enter radius: ");
 					std::cin >> radius;
 
-					std::cout << std::endl;
+					frontend_logger.log_value("", radius);
+
+					frontend_logger.just_print("\n");
 
 					circle_t shape = Circle(radius);
 					area = shape.area;
@@ -268,10 +273,12 @@ int main(int argc, const char* argv[])
 				{
 					double side;
 
-					std::cout << "Enter side: ";
+					frontend_logger.just_print("Enter side: ");
 					std::cin >> side;
 
-					std::cout << std::endl;
+					frontend_logger.log_value("", side);
+
+					frontend_logger.just_print("\n");
 
 					square_t shape = Square(side);
 					area = shape.area;
@@ -286,11 +293,17 @@ int main(int argc, const char* argv[])
 					frontend_logger.just_print("Enter length: ");
 					std::cin >> length;
 
+					frontend_logger.log_value("", length);
+
 					frontend_logger.just_print("Enter width: ");
 					std::cin >> width;
 
+					frontend_logger.log_value("", width);
+
 					frontend_logger.just_print("Enter height: ");
 					std::cin >> height;
+
+					frontend_logger.log_value("", height);
 
 					frontend_logger.just_print("\n");
 
@@ -306,6 +319,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger.just_print("Enter side: ");
 					std::cin >> face;
+
+					frontend_logger.log_value("", face);
 
 					frontend_logger.just_print("\n");
 
