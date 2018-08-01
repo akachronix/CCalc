@@ -170,7 +170,8 @@ int main(int argc, const char* argv[])
 				frontend_logger.just_print("4) Circle\n");
 				frontend_logger.just_print("5) Square\n");
 				frontend_logger.just_print("6) Rectangular Prism\n");
-				frontend_logger.just_print("7) Cube\n");
+				frontend_logger.just_print("7) Triangular Prism\n");
+				frontend_logger.just_print("8) Cube\n");
 
 				frontend_logger.just_print("\n");
 
@@ -315,6 +316,33 @@ int main(int argc, const char* argv[])
 
 				case 7:
 				{
+					double length, width, height;
+
+					frontend_logger.just_print("Enter length: ");
+					std::cin >> length;
+
+					frontend_logger.log_value("", length);
+
+					frontend_logger.just_print("Enter width: ");
+					std::cin >> width;
+
+					frontend_logger.log_value("", width);
+
+					frontend_logger.just_print("Enter height: ");
+					std::cin >> height;
+
+					frontend_logger.log_value("", height);
+
+					frontend_logger.just_print("\n");
+
+					triangular_prism_t shape = Triangular_Prism(length, width, height);
+					area = shape.area;
+
+					break;			
+				}
+
+				case 8:
+				{
 					double face;
 
 					frontend_logger.just_print("Enter side: ");
@@ -452,6 +480,13 @@ int main(int argc, const char* argv[])
 		else if((strcmp(argv[1], "--rectangular-prism")) == 0)
 		{
 			rectangular_prism_t shape = Rectangular_Prism(atof(argv[2]), atof(argv[3]), atof(argv[4]));
+			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
+		}
+
+		else if((strcmp(argv[1], "--triangular-prism")) == 0)
+		{
+			triangular_prism_t shape = Triangular_Prism(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			std::cout << "Answer: " << shape.area << std::endl;
 			terminal_logger.log_value("Answer: ", shape.area);
 		}

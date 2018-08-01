@@ -9,6 +9,7 @@ typedef struct {double side, area;} square_t;
 
 // 3D shapes
 typedef struct {double length, width, height, area;} rectangular_prism_t;
+typedef struct {double length, width, height, area;} triangular_prism_t;
 typedef struct {double face, area;} cube_t;
 
 namespace libmath
@@ -28,5 +29,6 @@ namespace libmath
 
 	// 3D shapes
 	rectangular_prism_t Rectangular_Prism(double length, double width, double height);
+	triangular_prism_t Triangular_Prism(double length, double width, double height);
 	cube_t Cube(double face);
 }

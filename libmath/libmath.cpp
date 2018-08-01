@@ -72,6 +72,12 @@ namespace libmath
 		return obj;
 	}
 
+	triangular_prism_t Triangular_Prism(double length, double width, double height)
+	{
+		triangular_prism_t obj = {length, width, height, 0.5 * length * width * height};
+		return obj;
+	}
+
 	cube_t Cube(double face)
 	{
 		cube_t obj = {face, face * face * face};
