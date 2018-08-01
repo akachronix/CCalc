@@ -28,6 +28,7 @@ void help(logger& log)
 	log.just_print("\n");
 	log.just_print("Geometry (3D) -\n");
 	log.just_print("--rectangular-prism | finds the volume of a rectangular prism (three arguments) [length, width, height]\n");
+	log.just_print("--triangular-prism | finds the volume of a triangular prism (three arguments) [length, width, height]\n");
 	log.just_print("--cube | finds the volume of a cube (one argument) [face]");
 	log.just_print("\n");
 }
