@@ -172,7 +172,8 @@ int main(int argc, const char* argv[])
 				frontend_logger.just_print("5) Square\n");
 				frontend_logger.just_print("6) Rectangular Prism\n");
 				frontend_logger.just_print("7) Triangular Prism\n");
-				frontend_logger.just_print("8) Cube\n");
+				frontend_logger.just_print("8) Cone\n");
+				frontend_logger.just_print("9) Cube\n");
 
 				frontend_logger.just_print("\n");
 
@@ -344,6 +345,28 @@ int main(int argc, const char* argv[])
 
 				case 8:
 				{
+					double radius, height;
+
+					frontend_logger.just_print("Enter radius: ");
+					std::cin >> radius;
+
+					frontend_logger.log_value("", radius);
+
+					frontend_logger.just_print("Enter height: ");
+					std::cin >> height;
+
+					frontend_logger.log_value("", height);
+
+					frontend_logger.just_print("\n");
+
+					cone_t shape = Cone(radius, height);
+					area = shape.area;
+
+					break;
+				}
+
+				case 9:
+				{
 					double face;
 
 					frontend_logger.just_print("Enter side: ");
@@ -370,7 +393,7 @@ int main(int argc, const char* argv[])
 					frontend_logger.log_value("Area: ", area);
 				}
 
-				else if (option > 5 && option <= 7)
+				else if (option > 5 && option <= 9)
 				{
 					std::cout << "Volume: " << area << std::endl;
 					frontend_logger.log_value("Volume: ", area);
@@ -430,7 +453,7 @@ int main(int argc, const char* argv[])
 			std::cout << "Answer: " << multiply(num1, num2) << std::endl;
 			terminal_logger.log_value("Answer: ", multiply(num1, num2));
 		}
-
+		
 		else if((strcmp(argv[1], "--divide") == 0) || (strcmp(argv[1], "-d") == 0))
 		{
 			std::cout << "Answer: " << divide(num1, num2) << std::endl;
@@ -488,6 +511,13 @@ int main(int argc, const char* argv[])
 		else if((strcmp(argv[1], "--triangular-prism")) == 0)
 		{
 			triangular_prism_t shape = Triangular_Prism(atof(argv[2]), atof(argv[3]), atof(argv[4]));
+			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
+		}
+		
+		else if((strcmp(argv[1], "--cone")) == 0)
+		{
+			cone_t shape = Cone(atof(argv[2]), atof(argv[3]));
 			std::cout << "Answer: " << shape.area << std::endl;
 			terminal_logger.log_value("Answer: ", shape.area);
 		}

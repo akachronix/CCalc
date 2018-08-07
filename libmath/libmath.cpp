@@ -78,6 +78,12 @@ namespace libmath
 		return obj;
 	}
 
+	cone_t Cone(double radius, double height)
+	{
+		cone_t obj = {radius, height, pi * (radius * radius) * (height / 3)};	
+		return obj;
+	}
+
 	cube_t Cube(double face)
 	{
 		cube_t obj = {face, face * face * face};
