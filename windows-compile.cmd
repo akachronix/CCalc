@@ -34,7 +34,7 @@ move /Y *.o obj
 echo.
 
 pause
-exit
+goto EXIT
 
 :BIN_EXIST
 del /S /Q bin
@@ -53,3 +53,5 @@ goto OBJ_NOT_EXIST
 :OBJ_NOT_EXIST
 mkdir obj
 goto MOVE_OBJECTS
+
+:EXIT
