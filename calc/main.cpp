@@ -23,7 +23,8 @@ static void help(logger& log)
 	log.just_print("--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height]\n");
 	log.just_print("--rectangle | finds the area of a rectangle (two arguments) [length, width]\n");
 	log.just_print("--triangle | finds the area of a triangle (two arguments) [base, height]\n");
-	log.just_print("--rhombus | finds the area of a rhombus (one argument) [face]\n");
+	log.just_print("--rhombus | finds the area of a rhombus (one argument) [side]\n");
+	log.just_print("--hexagon | finds the area of a hexagon (one argument) [side]\n");
 	log.just_print("--circle | finds the area of a circle (one argument) [radius]\n");
 	log.just_print("--square | finds the area of a square (one argument) [side]\n");
 	log.just_print("\n");
@@ -171,12 +172,13 @@ int main(int argc, const char* argv[])
 				frontend_logger.just_print("2) Rectangle\n");
 				frontend_logger.just_print("3) Triangle\n");
 				frontend_logger.just_print("4) Rhombus\n");
-				frontend_logger.just_print("5) Circle\n");
-				frontend_logger.just_print("6) Square\n");
-				frontend_logger.just_print("7) Rectangular Prism\n");
-				frontend_logger.just_print("8) Triangular Prism\n");
-				frontend_logger.just_print("9) Cone\n");
-				frontend_logger.just_print("10) Cube\n");
+				frontend_logger.just_print("5) Hexagon\n");
+				frontend_logger.just_print("6) Circle\n");
+				frontend_logger.just_print("7) Square\n");
+				frontend_logger.just_print("8) Rectangular Prism\n");
+				frontend_logger.just_print("9) Triangular Prism\n");
+				frontend_logger.just_print("10) Cone\n");
+				frontend_logger.just_print("11) Cube\n");
 
 				frontend_logger.just_print("\n");
 
@@ -264,22 +266,39 @@ int main(int argc, const char* argv[])
 
 				case 4:
 				{
-					double face;
+					double side;
 
-					frontend_logger.just_print("Enter face: ");
-					std::cin >> face;
+					frontend_logger.just_print("Enter side: ");
+					std::cin >> side;
 
-					frontend_logger.log_value("", face);
+					frontend_logger.log_value("", side);
 
 					frontend_logger.just_print("\n");
 
-					rhombus_t shape = Rhombus(face);
+					rhombus_t shape = Rhombus(side);
 					area = shape.area;
 
 					break;
 				}
 
 				case 5:
+				{
+					double side;
+
+					frontend_logger.just_print("Enter side: ");
+					std::cin >> side;
+
+					frontend_logger.log_value("", side);
+
+					frontend_logger.just_print("\n");
+
+					hexagon_t shape = Hexagon(side);
+					area = shape.area;
+
+					break;
+				}
+
+				case 6:
 				{
 					double radius;
 
@@ -296,7 +315,7 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
-				case 6:
+				case 7:
 				{
 					double side;
 
@@ -308,33 +327,6 @@ int main(int argc, const char* argv[])
 					frontend_logger.just_print("\n");
 
 					square_t shape = Square(side);
-					area = shape.area;
-
-					break;
-				}
-
-				case 7:
-				{
-					double length, width, height;
-
-					frontend_logger.just_print("Enter length: ");
-					std::cin >> length;
-
-					frontend_logger.log_value("", length);
-
-					frontend_logger.just_print("Enter width: ");
-					std::cin >> width;
-
-					frontend_logger.log_value("", width);
-
-					frontend_logger.just_print("Enter height: ");
-					std::cin >> height;
-
-					frontend_logger.log_value("", height);
-
-					frontend_logger.just_print("\n");
-
-					rectangular_prism_t shape = Rectangular_Prism(length, width, height);
 					area = shape.area;
 
 					break;
@@ -361,13 +353,40 @@ int main(int argc, const char* argv[])
 
 					frontend_logger.just_print("\n");
 
+					rectangular_prism_t shape = Rectangular_Prism(length, width, height);
+					area = shape.area;
+
+					break;
+				}
+
+				case 9:
+				{
+					double length, width, height;
+
+					frontend_logger.just_print("Enter length: ");
+					std::cin >> length;
+
+					frontend_logger.log_value("", length);
+
+					frontend_logger.just_print("Enter width: ");
+					std::cin >> width;
+
+					frontend_logger.log_value("", width);
+
+					frontend_logger.just_print("Enter height: ");
+					std::cin >> height;
+
+					frontend_logger.log_value("", height);
+
+					frontend_logger.just_print("\n");
+
 					triangular_prism_t shape = Triangular_Prism(length, width, height);
 					area = shape.area;
 
 					break;			
 				}
 
-				case 9:
+				case 10:
 				{
 					double radius, height;
 
@@ -389,7 +408,7 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
-				case 10:
+				case 11:
 				{
 					double face;
 
@@ -502,6 +521,13 @@ int main(int argc, const char* argv[])
 		else if((strcmp(argv[1], "--rhombus")) == 0)
 		{
 			rhombus_t shape = Rhombus(atof(argv[2]));
+			std::cout << "Answer: " << shape.area << std::endl;
+			terminal_logger.log_value("Answer: ", shape.area);
+		}
+
+		else if ((strcmp(argv[1], "--hexagon")) == 0)
+		{
+			hexagon_t shape = Hexagon(atof(argv[2]));
 			std::cout << "Answer: " << shape.area << std::endl;
 			terminal_logger.log_value("Answer: ", shape.area);
 		}

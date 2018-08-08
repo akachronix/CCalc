@@ -1,6 +1,6 @@
 #include "libmath.hpp"
 
-#define _PI_ (3.141592653f)
+#include <cmath>
 
 namespace libmath
 {
@@ -53,15 +53,21 @@ namespace libmath
 		return obj;
 	}
 
-	rhombus_t Rhombus(double face)
+	rhombus_t Rhombus(double side)
 	{
-		rhombus_t obj = {face, 0.5 * face};
+		rhombus_t obj = {side, 0.5 * side};
+		return obj;
+	}
+
+	hexagon_t Hexagon(double side)
+	{
+		hexagon_t obj = {side, 3 * sqrt(3) / 2 * power(side, 2)};
 		return obj;
 	}
 
 	circle_t Circle(double radius)
 	{
-		circle_t obj = {radius, (radius * radius) * _PI_};
+		circle_t obj = {radius, (radius * radius) * pi};
 		return obj;
 	}
 

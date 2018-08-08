@@ -1,12 +1,13 @@
 #pragma once
 
-static const double pi = 3.141592653;
+const double pi = 3.141592653;
 
 // 2D shapes
 typedef struct {double side1, side2, height, area;} trapezoid_t;
 typedef struct {double length, width, area;} rectangle_t;
 typedef struct {double base, height, area;} triangle_t;
-typedef struct {double face, area;} rhombus_t;
+typedef struct {double side, area;} rhombus_t;
+typedef struct {double side, area;} hexagon_t;
 typedef struct {double radius, area;} circle_t;
 typedef struct {double side, area;} square_t;
 
@@ -28,7 +29,8 @@ namespace libmath
 	trapezoid_t Trapezoid(double side1, double side2, double height);
 	rectangle_t Rectangle(double length, double height);
 	triangle_t Triangle(double base, double height);
-	rhombus_t Rhombus(double face);
+	rhombus_t Rhombus(double side);
+	hexagon_t Hexagon(double side);
 	circle_t Circle(double radius);
 	square_t Square(double side);
 
