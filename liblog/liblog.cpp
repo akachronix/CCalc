@@ -28,28 +28,8 @@ logger::logger()
 
 logger::~logger()
 {
-    dump_log(m_logfile);
+    //dump_log(m_logfile);
 }
-
-//std::ostream& logger::operator<<(std::ostream& os, const logger& log)
-//{
-//	for (auto x : log.log_history)
-//	{
-//		os << x;
-//	}
-//
-//	return os;
-//}
-//
-//std::istream& logger::operator>>(std::istream& is, logger& log)
-//{
-//	std::string input = BLANK_STR;
-//	is >> input;
-//	
-//	log.just_print(input);
-//	
-//	return is;
-//}
 
 bool logger::log_error(std::string error_str)
 {
@@ -129,6 +109,39 @@ bool logger::log_value(std::string log_str, int value)
     return false;
 }
 
+bool logger::log_value(std::string log_str, float value)
+{
+	if (m_loglevel >= loglevel_t::everything)
+	{
+		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
+		*
+		* std::ostringstream strs;
+		* strs << dbl;
+		* std::string str = strs.str(); */
+
+		std::ostringstream casted_value;
+		casted_value << value;
+
+		std::string message = BLANK_STR;
+
+		if (log_str != "")
+		{
+			message = log_str + casted_value.str() + "\n";
+		}
+
+		else
+		{
+			message = casted_value.str() + "\n";
+		}
+
+		log_history.push_back(message);
+
+		return true;
+	}
+
+	return false;
+}
+
 bool logger::log_value(std::string log_str, double value)
 {
     if (m_loglevel >= loglevel_t::everything)
@@ -160,6 +173,75 @@ bool logger::log_value(std::string log_str, double value)
     }
 
     return false;
+}
+
+bool logger::log_value(int value)
+{
+	if (m_loglevel >= loglevel_t::everything)
+	{
+		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
+		*
+		* std::ostringstream strs;
+		* strs << dbl;
+		* std::string str = strs.str(); */
+
+		std::ostringstream casted_value;
+		casted_value << value;
+
+		std::string message = casted_value.str() + "\n";
+
+		log_history.push_back(message);
+
+		return true;
+	}
+
+	return false;
+}
+
+bool logger::log_value(float value)
+{
+	if (m_loglevel >= loglevel_t::everything)
+	{
+		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
+		*
+		* std::ostringstream strs;
+		* strs << dbl;
+		* std::string str = strs.str(); */
+
+		std::ostringstream casted_value;
+		casted_value << value;
+
+		std::string message = casted_value.str() + "\n";
+
+		log_history.push_back(message);
+
+		return true;
+	}
+
+	return false;
+}
+
+bool logger::log_value(double value)
+{
+	if (m_loglevel >= loglevel_t::everything)
+	{
+		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
+		*
+		* std::ostringstream strs;
+		* strs << dbl;
+		* std::string str = strs.str(); */
+
+		std::ostringstream casted_value;
+		casted_value << value;
+
+		std::string message = casted_value.str() + "\n";
+
+		log_history.push_back(message);
+
+		return true;
+	}
+
+	return false;
 }
 
 bool logger::print(std::string print_str)
@@ -210,4 +292,26 @@ bool logger::dump_log(std::string file)
         }
     }
     return false;
+}
+
+bool logger::dump_log()
+{
+	if (log_history.size() != 0)
+	{
+		std::ofstream log_file;
+		log_file.open(m_logfile);
+
+		if (log_file.is_open())
+		{
+			for (auto x : log_history)
+			{
+				log_file << x;
+			}
+
+			log_file.close();
+
+			return true;
+		}
+	}
+	return false;
 }

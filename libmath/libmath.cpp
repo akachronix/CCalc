@@ -53,6 +53,12 @@ namespace libmath
 		return obj;
 	}
 
+	rhombus_t Rhombus(double face)
+	{
+		rhombus_t obj = {face, 0.5 * face};
+		return obj;
+	}
+
 	circle_t Circle(double radius)
 	{
 		circle_t obj = {radius, (radius * radius) * _PI_};
