@@ -1,3 +1,19 @@
+// CCalc, one stop shop for mathematical formulas
+// Copyright (C) 2018 Chronix
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 #include "libmath.hpp"
 
 #include <cmath>
@@ -8,12 +24,12 @@ namespace libmath
 	{
 		return x + y;
 	}
-	
+
 	double subtract(double x, double y)
 	{
 		return x - y;
 	}
-	
+
 	double multiply(double x, double y)
 	{
 		return x * y;
@@ -23,13 +39,15 @@ namespace libmath
 	{
 		return x / y;
 	}
-	
+
 	double power(double base, double exponent)
 	{
 		double answer = base;
 
 		for(int i = 1; i < exponent; i++)
+		{
 			answer *= base;
+		}
 
 		return answer;
 	}
@@ -46,7 +64,7 @@ namespace libmath
 		rectangle_t obj = {length, width, length * width};
 		return obj;
 	}
-	
+
 	triangle_t Triangle(double base, double height)
 	{
 		triangle_t obj = {base, height, (base * height) / 2};
@@ -92,7 +110,7 @@ namespace libmath
 
 	cone_t Cone(double radius, double height)
 	{
-		cone_t obj = {radius, height, pi * (radius * radius) * (height / 3)};	
+		cone_t obj = {radius, height, pi * (radius * radius) * (height / 3)};
 		return obj;
 	}
 

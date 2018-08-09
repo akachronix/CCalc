@@ -1,3 +1,19 @@
+// CCalc, one stop shop for mathematical formulas
+// Copyright (C) 2018 Chronix
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 #include "liblog.hpp"
 
 #include <iostream>
@@ -22,18 +38,18 @@ logger::logger(loglevel_t loglevel)
 logger::logger()
 {
     // use defaults (which are to log everything and set filename to logger.log)
-    m_loglevel = loglevel_t::everything;
+    m_loglevel = everything;
     m_logfile = "logger.log";
 }
 
 logger::~logger()
 {
-    //dump_log(m_logfile);
+    dump_log(m_logfile);
 }
 
 bool logger::log_error(std::string error_str)
 {
-    if (m_loglevel >= loglevel_t::errors)
+    if (m_loglevel >= errors)
     {
         std::string message = "[ERROR] " + error_str + "\n";
 
@@ -42,13 +58,13 @@ bool logger::log_error(std::string error_str)
 
         return true;
     }
-    
+
     return false;
 }
 
 bool logger::log_warning(std::string warning_str)
 {
-    if (m_loglevel >= loglevel_t::warnings)
+    if (m_loglevel >= warnings)
     {
         std::string message = "[WARNING] " + warning_str + "\n";
 
@@ -63,10 +79,10 @@ bool logger::log_warning(std::string warning_str)
 
 bool logger::log(std::string log_str)
 {
-    if (m_loglevel >= loglevel_t::everything)
+    if (m_loglevel >= everything)
     {
         std::string message = "[LOG] " + log_str + "\n";
-        
+
         std::cout << message;
         log_history.push_back(message);
 
@@ -78,7 +94,7 @@ bool logger::log(std::string log_str)
 
 bool logger::log_value(std::string log_str, int value)
 {
-    if (m_loglevel >= loglevel_t::everything)
+    if (m_loglevel >= everything)
     {
         /* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
          *
@@ -111,7 +127,7 @@ bool logger::log_value(std::string log_str, int value)
 
 bool logger::log_value(std::string log_str, float value)
 {
-	if (m_loglevel >= loglevel_t::everything)
+	if (m_loglevel >= everything)
 	{
 		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
 		*
@@ -144,7 +160,7 @@ bool logger::log_value(std::string log_str, float value)
 
 bool logger::log_value(std::string log_str, double value)
 {
-    if (m_loglevel >= loglevel_t::everything)
+    if (m_loglevel >= everything)
     {
         /* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
          *
@@ -177,7 +193,7 @@ bool logger::log_value(std::string log_str, double value)
 
 bool logger::log_value(int value)
 {
-	if (m_loglevel >= loglevel_t::everything)
+	if (m_loglevel >= everything)
 	{
 		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
 		*
@@ -200,7 +216,7 @@ bool logger::log_value(int value)
 
 bool logger::log_value(float value)
 {
-	if (m_loglevel >= loglevel_t::everything)
+	if (m_loglevel >= everything)
 	{
 		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
 		*
@@ -223,7 +239,7 @@ bool logger::log_value(float value)
 
 bool logger::log_value(double value)
 {
-	if (m_loglevel >= loglevel_t::everything)
+	if (m_loglevel >= everything)
 	{
 		/* Credit: https://stackoverflow.com/questions/332111/how-do-i-convert-a-double-into-a-string-in-c
 		*
@@ -285,7 +301,7 @@ bool logger::dump_log(std::string file)
             {
                 log_file << x;
             }
-            
+
             log_file.close();
 
             return true;

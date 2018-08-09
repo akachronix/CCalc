@@ -1,6 +1,24 @@
+// CCalc, one stop shop for mathematical formulas
+// Copyright (C) 2018 Chronix
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 
 #include "libmath.hpp"
 using namespace libmath;
@@ -9,36 +27,48 @@ using namespace libmath;
 
 static void help(logger& log)
 {
-	log.just_print("Usage:\n");
 	log.just_print("Arithmetic -\n");
-	log.just_print("--add | adds two numbers (two arguments)\n");
-	log.just_print("--subtract | subtracts two numbers (two arguments)\n");
-	log.just_print("--multiply | multiplies two numbers (two arguments)\n");
-	log.just_print("--divide | divides two numbers (two arguments)\n");
+	log.just_print("  --add | adds two numbers (two arguments)\n");
+	log.just_print("  --subtract | subtracts two numbers (two arguments)\n");
+	log.just_print("  --multiply | multiplies two numbers (two arguments)\n");
+	log.just_print("  --divide | divides two numbers (two arguments)\n");
 	log.just_print("\n");
 	log.just_print("Exponential -\n");
-	log.just_print("--power | puts x to the power of y (two arguments)\n");
+	log.just_print("  --power | puts x to the power of y (two arguments)\n");
 	log.just_print("\n");
 	log.just_print("Geometry (2D) -\n");
-	log.just_print("--trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height]\n");
-	log.just_print("--rectangle | finds the area of a rectangle (two arguments) [length, width]\n");
-	log.just_print("--triangle | finds the area of a triangle (two arguments) [base, height]\n");
-	log.just_print("--rhombus | finds the area of a rhombus (one argument) [side]\n");
-	log.just_print("--hexagon | finds the area of a hexagon (one argument) [side]\n");
-	log.just_print("--circle | finds the area of a circle (one argument) [radius]\n");
-	log.just_print("--square | finds the area of a square (one argument) [side]\n");
+	log.just_print("  --trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height]\n");
+	log.just_print("  --rectangle | finds the area of a rectangle (two arguments) [length, width]\n");
+	log.just_print("  --triangle | finds the area of a triangle (two arguments) [base, height]\n");
+	log.just_print("  --rhombus | finds the area of a rhombus (one argument) [side]\n");
+	log.just_print("  --hexagon | finds the area of a hexagon (one argument) [side]\n");
+	log.just_print("  --circle | finds the area of a circle (one argument) [radius]\n");
+	log.just_print("  --square | finds the area of a square (one argument) [side]\n");
 	log.just_print("\n");
 	log.just_print("Geometry (3D) -\n");
-	log.just_print("--rectangular-prism | finds the volume of a rectangular prism (three arguments) [length, width, height]\n");
-	log.just_print("--triangular-prism | finds the volume of a triangular prism (three arguments) [length, width, height]\n");
-	log.just_print("--cone | finds the volume of a cone (two arguments) [radius, height]\n");
-	log.just_print("--cube | finds the volume of a cube (one argument) [face]");
+	log.just_print("  --rectangular-prism | finds the volume of a rectangular prism (three arguments) [length, width, height]\n");
+	log.just_print("  --triangular-prism | finds the volume of a triangular prism (three arguments) [length, width, height]\n");
+	log.just_print("  --cone | finds the volume of a cone (two arguments) [radius, height]\n");
+	log.just_print("  --cube | finds the volume of a cube (one argument) [face]\n");
 	log.just_print("\n");
+	log.just_print("Other -\n");
+	log.just_print("  --author | details about yours truly\n");
+}
+
+static std::string GetFileName(std::string prepend)
+{
+	std::time_t t = std::time(0);   // get time now
+	std::tm* now = std::localtime(&t);
+
+	std::ostringstream stream;
+	stream << prepend << "_" << now->tm_mon + 1 << now->tm_mday << now->tm_year + 1900 << "_" << now->tm_hour << now->tm_min << ".log";
+
+	return stream.str();
 }
 
 int main(int argc, const char* argv[])
 {
-	logger frontend_logger(everything, "ccalc-frontend.log");
+	logger frontend_logger(everything, GetFileName("ccalc"));
 
 	if(argc == 1)
 	{
@@ -47,6 +77,11 @@ int main(int argc, const char* argv[])
 		frontend_logger.just_print("https://github.com/akachronix\n");
 		frontend_logger.just_print("\n");
 		frontend_logger.just_print("Choose \"Help\" to view features.\n");
+		frontend_logger.just_print("\n");
+    	frontend_logger.just_print("This program comes with ABSOLUTELY NO WARRANTY.\n");
+    	frontend_logger.just_print("This is free software, and you are welcome to redistribute it under certain conditions.\n");
+		frontend_logger.just_print("\n");
+		frontend_logger.just_print("See LICENSE for details.\n");
 		frontend_logger.just_print("\n");
 
 		bool running = true;
@@ -462,7 +497,7 @@ int main(int argc, const char* argv[])
 
 	else if(argc > 0)
 	{
-		logger terminal_logger(everything, "ccalc-terminal.log");
+		logger terminal_logger(everything, GetFileName("ccalc"));
 
 		if((strcmp(argv[1], "--add")) == 0)
 		{
@@ -574,6 +609,17 @@ int main(int argc, const char* argv[])
 		else if((strcmp(argv[1], "--help")) == 0)
 		{
 			help(terminal_logger);
+		}
+
+		else if((strcmp(argv[1], "--author")) == 0)
+		{
+			terminal_logger.just_print("Github: https://www.github.com/akachronix\n");
+			terminal_logger.just_print("SoundCloud: https://www.soundcloud.com/chronix2\n");
+			terminal_logger.just_print("Steam: https:///www.steamcommunity.com/id/datboichronchron\n");
+			terminal_logger.just_print("Instagram: https://www.instagram.com/akachronix\n");
+			terminal_logger.just_print("Snapchat: https://www.snapchat.com/add/aka.chronix\n");
+			terminal_logger.just_print("\n");
+			terminal_logger.just_print("You were curious about me, eh? ;)\n");
 		}
 
 		else
