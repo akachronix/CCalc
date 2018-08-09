@@ -50,7 +50,7 @@ int main(int argc, const char* argv[])
 		frontend_logger.just_print("\n");
 
 		bool running = true;
-		
+
 		while (running)
 		{
 			frontend_logger.just_print("1) Arithmetic\n");
@@ -383,7 +383,7 @@ int main(int argc, const char* argv[])
 					triangular_prism_t shape = Triangular_Prism(length, width, height);
 					area = shape.area;
 
-					break;			
+					break;
 				}
 
 				case 10:
@@ -464,46 +464,34 @@ int main(int argc, const char* argv[])
 	{
 		logger terminal_logger(everything, "ccalc-terminal.log");
 
-		double num1, num2 = 0;
-		
-		if(argv[2] != NULL)
-		{
-			double num1 = atof(argv[2]);
-		}
-		
-		if(argv[3] != NULL)
-		{
-			double num2 = atof(argv[3]);
-		}
-
 		if((strcmp(argv[1], "--add")) == 0)
 		{
-			std::cout << "Answer: " << add(num1, num2) << std::endl;
-			terminal_logger.log_value("Answer: ", add(num1, num2));
+			std::cout << "Answer: " << add(atof(argv[2]), atof(argv[3])) << std::endl;
+			terminal_logger.log_value("Answer: ", add(atof(argv[2]), atof(argv[3])));
 		}
 
 		else if((strcmp(argv[1], "--subtract")) == 0)
 		{
-			std::cout << "Answer: " << subtract(num1, num2) << std::endl;
-			terminal_logger.log_value("Answer: ", subtract(num1, num2));
+			std::cout << "Answer: " << subtract(atof(argv[2]), atof(argv[3])) << std::endl;
+			terminal_logger.log_value("Answer: ", subtract(atof(argv[2]), atof(argv[3])));
 		}
 
 		else if((strcmp(argv[1], "--multiply")) == 0)
 		{
-			std::cout << "Answer: " << multiply(num1, num2) << std::endl;
-			terminal_logger.log_value("Answer: ", multiply(num1, num2));
+			std::cout << "Answer: " << multiply(atof(argv[2]), atof(argv[3])) << std::endl;
+			terminal_logger.log_value("Answer: ", multiply(atof(argv[2]), atof(argv[3])));
 		}
-		
+
 		else if((strcmp(argv[1], "--divide")) == 0)
 		{
-			std::cout << "Answer: " << divide(num1, num2) << std::endl;
-			terminal_logger.log_value("Answer: ", divide(num1, num2));
+			std::cout << "Answer: " << divide(atof(argv[2]), atof(argv[3])) << std::endl;
+			terminal_logger.log_value("Answer: ", divide(atof(argv[2]), atof(argv[3])));
 		}
 
 		else if((strcmp(argv[1], "--power")) == 0)
 		{
-			std::cout << "Answer: " << power(num1, num2) << std::endl;
-			terminal_logger.log_value("Answer: ", power(num1, num2));
+			std::cout << "Answer: " << power(atof(argv[2]), atof(argv[3])) << std::endl;
+			terminal_logger.log_value("Answer: ", power(atof(argv[2]), atof(argv[3])));
 		}
 
 		else if((strcmp(argv[1], "--trapezoid")) == 0)
@@ -512,14 +500,14 @@ int main(int argc, const char* argv[])
 			std::cout << "Answer: " << shape.area << std::endl;
 			terminal_logger.log_value("Answer: ", shape.area);
 		}
-		
+
 		else if((strcmp(argv[1], "--rectangle")) ==  0)
 		{
 			rectangle_t shape = Rectangle(atof(argv[2]), atof(argv[3]));
 			std::cout << "Answer: " << shape.area << std::endl;
 			terminal_logger.log_value("Answer: ", shape.area);
 		}
-		
+
 		else if((strcmp(argv[1], "--triangle")) == 0)
 		{
 			triangle_t shape = Triangle(atof(argv[2]), atof(argv[3]));
@@ -568,7 +556,7 @@ int main(int argc, const char* argv[])
 			std::cout << "Answer: " << shape.area << std::endl;
 			terminal_logger.log_value("Answer: ", shape.area);
 		}
-		
+
 		else if((strcmp(argv[1], "--cone")) == 0)
 		{
 			cone_t shape = Cone(atof(argv[2]), atof(argv[3]));
