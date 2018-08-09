@@ -5,25 +5,16 @@ IF EXIST bin\ goto BIN_EXIST
 
 :COMPILE
 echo [LOG] Compiling frontend.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -c calc/main.cpp
+g++ -Iinclude -Wall -pedantic -g -c src/main.cpp
 
 echo [LOG] Compiling libmath library.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -c -fPIC libmath/libmath.cpp
-
-echo [LOG] Linking libmath into shared library.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -shared -o bin/libmath.dll libmath.o
+g++ -Iinclude -Wall -pedantic -g -c src/libmath.cpp
 
 echo [LOG] Compiling liblog library.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -c -fPIC liblog/liblog.cpp
+g++ -Iinclude -Wall -pedantic -g -c src/liblog.cpp
 
-echo [LOG] Linking liblog into shared library.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -shared -o bin/liblog.dll liblog.o
-
-echo [LOG] Linking frontend with library into applet.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -o bin/ccalc.exe main.o -lmath -llog -lstdc++
-
-echo [LOG] Making PE binary for portability.
-g++ -Ilibmath -Iliblog -Lbin -Wall -pedantic -g -o bin/ccalc_pe.exe main.o libmath.o liblog.o -static
+echo [LOG] Linking.
+g++ -Iinclude -Wall -pedantic -g -o bin/ccalc.exe main.o libmath.o liblog.o -static
 
 IF NOT EXIST obj\ goto OBJ_NOT_EXIST
 IF EXIST obj\ goto OBJ_EXIST
