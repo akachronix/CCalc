@@ -13,8 +13,12 @@ g++ -Iinclude -Wall -pedantic -g -c src/libmath.cpp
 echo [LOG] Compiling liblog library.
 g++ -Iinclude -Wall -pedantic -g -c src/liblog.cpp
 
+echo [LOG] Compiling test program.
+g++ -Iinclude -Wall -pedantic -g -c src/test.cpp
+
 echo [LOG] Linking.
 g++ -Iinclude -Wall -pedantic -g -o bin/ccalc.exe main.o libmath.o liblog.o -static
+g++ -Iinclude -Wall -pedantic -g -o bin/test.exe test.o libmath.o liblog.o -static
 
 IF NOT EXIST obj\ goto OBJ_NOT_EXIST
 IF EXIST obj\ goto OBJ_EXIST
