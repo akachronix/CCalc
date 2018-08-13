@@ -6,8 +6,10 @@ install: main.o test.o liblog.o libmath.o
 	if [ -d bin ]; then rm -rf bin; fi
 	mkdir bin obj
 	mv *.o obj
-	$(CC) $(CXXFLAGS) obj/main.o obj/liblog.o obj/libmath.o -o bin/ccalc
-	$(CC) $(CXXFLAGS) obj/test.o obj/libmath.o -o bin/test -static
+	$(CC) $(CXXFLAGS) -s obj/main.o obj/liblog.o obj/libmath.o -o bin/ccalc -static
+	$(CC) $(CXXFLAGS) -s obj/test.o obj/libmath.o -o bin/test -static
+	$(CC) $(CXXFLAGS) obj/main.o obj/liblog.o obj/libmath.o -o bin/ccalc_debug -static
+	$(CC) $(CXXFLAGS) obj/test.o obj/libmath.o -o bin/test_debug -static
 	sudo cp bin/ccalc /usr/bin
 
 all: main.o test.o liblog.o libmath.o
@@ -15,8 +17,10 @@ all: main.o test.o liblog.o libmath.o
 	if [ -d bin ]; then rm -rf bin; fi
 	mkdir bin obj
 	mv *.o obj
-	$(CC) $(CXXFLAGS) obj/main.o obj/liblog.o obj/libmath.o -o bin/ccalc -static
-	$(CC) $(CXXFLAGS) obj/test.o obj/libmath.o -o bin/test -static
+	$(CC) $(CXXFLAGS) -s obj/main.o obj/liblog.o obj/libmath.o -o bin/ccalc -static
+	$(CC) $(CXXFLAGS) -s obj/test.o obj/libmath.o -o bin/test -static
+	$(CC) $(CXXFLAGS) obj/main.o obj/liblog.o obj/libmath.o -o bin/ccalc_debug -static
+	$(CC) $(CXXFLAGS) obj/test.o obj/libmath.o -o bin/test_debug -static
 
 main.o: src/main.cpp
 	$(CC) $(CXXFLAGS) -c src/main.cpp
