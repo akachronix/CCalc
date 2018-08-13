@@ -264,21 +264,6 @@ bool logger::print(std::string print_str)
 {
     if (m_loglevel >= loglevel_t::print)
     {
-        std::string message = "[OUTPUT] " + print_str + "\n";
-
-        std::cout << message;
-        log_history.push_back(message);
-
-        return true;
-    }
-
-    return false;
-}
-
-bool logger::just_print(std::string print_str)
-{
-    if (m_loglevel >= loglevel_t::print)
-    {
         std::cout << print_str;
         log_history.push_back(print_str);
 
@@ -312,22 +297,5 @@ bool logger::dump_log(std::string file)
 
 bool logger::dump_log()
 {
-	if (log_history.size() != 0)
-	{
-		std::ofstream log_file;
-		log_file.open(m_logfile);
-
-		if (log_file.is_open())
-		{
-			for (auto x : log_history)
-			{
-				log_file << x;
-			}
-
-			log_file.close();
-
-			return true;
-		}
-	}
-	return false;
+	return dump_log(m_logfile);
 }

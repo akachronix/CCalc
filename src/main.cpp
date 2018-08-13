@@ -27,32 +27,32 @@ using namespace libmath;
 
 static void help(logger& log)
 {
-	log.just_print("Arithmetic -\n");
-	log.just_print("  --add | adds two numbers (two arguments)\n");
-	log.just_print("  --subtract | subtracts two numbers (two arguments)\n");
-	log.just_print("  --multiply | multiplies two numbers (two arguments)\n");
-	log.just_print("  --divide | divides two numbers (two arguments)\n");
-	log.just_print("\n");
-	log.just_print("Exponential -\n");
-	log.just_print("  --power | puts x to the power of y (two arguments)\n");
-	log.just_print("\n");
-	log.just_print("Geometry (2D) -\n");
-	log.just_print("  --trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height]\n");
-	log.just_print("  --rectangle | finds the area of a rectangle (two arguments) [length, width]\n");
-	log.just_print("  --triangle | finds the area of a triangle (two arguments) [base, height]\n");
-	log.just_print("  --rhombus | finds the area of a rhombus (one argument) [side]\n");
-	log.just_print("  --hexagon | finds the area of a hexagon (one argument) [side]\n");
-	log.just_print("  --circle | finds the area of a circle (one argument) [radius]\n");
-	log.just_print("  --square | finds the area of a square (one argument) [side]\n");
-	log.just_print("\n");
-	log.just_print("Geometry (3D) -\n");
-	log.just_print("  --rectangular-prism | finds the volume of a rectangular prism (three arguments) [length, width, height]\n");
-	log.just_print("  --triangular-prism | finds the volume of a triangular prism (three arguments) [length, width, height]\n");
-	log.just_print("  --cone | finds the volume of a cone (two arguments) [radius, height]\n");
-	log.just_print("  --cube | finds the volume of a cube (one argument) [face]\n");
-	log.just_print("\n");
-	log.just_print("Other -\n");
-	log.just_print("  --author | details about yours truly\n");
+	log.print("Arithmetic -\n");
+	log.print("  --add | adds two numbers (two arguments)\n");
+	log.print("  --subtract | subtracts two numbers (two arguments)\n");
+	log.print("  --multiply | multiplies two numbers (two arguments)\n");
+	log.print("  --divide | divides two numbers (two arguments)\n");
+	log.print("\n");
+	log.print("Exponential -\n");
+	log.print("  --power | puts x to the power of y (two arguments)\n");
+	log.print("\n");
+	log.print("Geometry (2D) -\n");
+	log.print("  --trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height]\n");
+	log.print("  --rectangle | finds the area of a rectangle (two arguments) [length, width]\n");
+	log.print("  --triangle | finds the area of a triangle (two arguments) [base, height]\n");
+	log.print("  --rhombus | finds the area of a rhombus (one argument) [side]\n");
+	log.print("  --hexagon | finds the area of a hexagon (one argument) [side]\n");
+	log.print("  --circle | finds the area of a circle (one argument) [radius]\n");
+	log.print("  --square | finds the area of a square (one argument) [side]\n");
+	log.print("\n");
+	log.print("Geometry (3D) -\n");
+	log.print("  --rectangular-prism | finds the volume of a rectangular prism (three arguments) [length, width, height]\n");
+	log.print("  --triangular-prism | finds the volume of a triangular prism (three arguments) [length, width, height]\n");
+	log.print("  --cone | finds the volume of a cone (two arguments) [radius, height]\n");
+	log.print("  --cube | finds the volume of a cube (one argument) [face]\n");
+	log.print("\n");
+	log.print("Other -\n");
+	log.print("  --author | details about yours truly\n");
 }
 
 static std::string GetFileName(std::string prepend)
@@ -72,64 +72,64 @@ int main(int argc, const char* argv[])
 
 	if(argc == 1)
 	{
-		frontend_logger.just_print("cCalc v2.0\n");
-		frontend_logger.just_print("(C) 2018 akachronix\n");
-		frontend_logger.just_print("https://github.com/akachronix\n");
-		frontend_logger.just_print("\n");
-		frontend_logger.just_print("Choose \"Help\" to view features.\n");
-		frontend_logger.just_print("\n");
-    	frontend_logger.just_print("This program comes with ABSOLUTELY NO WARRANTY.\n");
-    	frontend_logger.just_print("This is free software, and you are welcome to redistribute it under certain conditions.\n");
-		frontend_logger.just_print("\n");
-		frontend_logger.just_print("See LICENSE for details.\n");
-		frontend_logger.just_print("\n");
+		frontend_logger.print("cCalc v2.0\n");
+		frontend_logger.print("(C) 2018 akachronix\n");
+		frontend_logger.print("https://github.com/akachronix\n");
+		frontend_logger.print("\n");
+		frontend_logger.print("Choose \"Help\" to view features.\n");
+		frontend_logger.print("\n");
+    	frontend_logger.print("This program comes with ABSOLUTELY NO WARRANTY.\n");
+    	frontend_logger.print("This is free software, and you are welcome to redistribute it under certain conditions.\n");
+		frontend_logger.print("\n");
+		frontend_logger.print("See LICENSE for details.\n");
+		frontend_logger.print("\n");
 
 		bool running = true;
 
 		while (running)
 		{
-			frontend_logger.just_print("1) Arithmetic\n");
-			frontend_logger.just_print("2) Exponential\n");
-			frontend_logger.just_print("3) Geometry\n");
-			frontend_logger.just_print("4) Help\n");
-			frontend_logger.just_print("5) Exit\n");
+			frontend_logger.print("1) Arithmetic\n");
+			frontend_logger.print("2) Exponential\n");
+			frontend_logger.print("3) Geometry\n");
+			frontend_logger.print("4) Help\n");
+			frontend_logger.print("5) Exit\n");
 
-			frontend_logger.just_print("\n");
+			frontend_logger.print("\n");
 
 			int option;
 			std::cin >> option;
 
 			frontend_logger.log_value(option);
 
-			frontend_logger.just_print("\n");
+			frontend_logger.print("\n");
 
 			if (option == 1)
 			{
-				frontend_logger.just_print("1) Add\n");
-				frontend_logger.just_print("2) Subtract\n");
-				frontend_logger.just_print("3) Multiply\n");
-				frontend_logger.just_print("4) Divide\n");
+				frontend_logger.print("1) Add\n");
+				frontend_logger.print("2) Subtract\n");
+				frontend_logger.print("3) Multiply\n");
+				frontend_logger.print("4) Divide\n");
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				std::cin >> option;
 				frontend_logger.log_value(option);
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				double num1, num2;
 
-				frontend_logger.just_print("Enter first number: ");
+				frontend_logger.print("Enter first number: ");
 
 				std::cin >> num1;
 				frontend_logger.log_value(num1);
 
-				frontend_logger.just_print("Enter second number: ");
+				frontend_logger.print("Enter second number: ");
 
 				std::cin >> num2;
 				frontend_logger.log_value(num2);
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				switch (option)
 				{
@@ -158,33 +158,33 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 			}
 
 			else if (option == 2)
 			{
-				frontend_logger.just_print("1) Power\n");
+				frontend_logger.print("1) Power\n");
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				std::cin >> option;
 				frontend_logger.log_value(option);
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				double num1, num2;
 
-				frontend_logger.just_print("Enter first number: ");
+				frontend_logger.print("Enter first number: ");
 				std::cin >> num1;
 
 				frontend_logger.log_value(num1);
 
-				frontend_logger.just_print("Enter second number: ");
+				frontend_logger.print("Enter second number: ");
 				std::cin >> num2;
 
 				frontend_logger.log_value(num2);
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				switch (option)
 				{
@@ -198,29 +198,29 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 			}
 
 			else if (option == 3)
 			{
-				frontend_logger.just_print("1) Trapezoid\n");
-				frontend_logger.just_print("2) Rectangle\n");
-				frontend_logger.just_print("3) Triangle\n");
-				frontend_logger.just_print("4) Rhombus\n");
-				frontend_logger.just_print("5) Hexagon\n");
-				frontend_logger.just_print("6) Circle\n");
-				frontend_logger.just_print("7) Square\n");
-				frontend_logger.just_print("8) Rectangular Prism\n");
-				frontend_logger.just_print("9) Triangular Prism\n");
-				frontend_logger.just_print("10) Cone\n");
-				frontend_logger.just_print("11) Cube\n");
+				frontend_logger.print("1) Trapezoid\n");
+				frontend_logger.print("2) Rectangle\n");
+				frontend_logger.print("3) Triangle\n");
+				frontend_logger.print("4) Rhombus\n");
+				frontend_logger.print("5) Hexagon\n");
+				frontend_logger.print("6) Circle\n");
+				frontend_logger.print("7) Square\n");
+				frontend_logger.print("8) Rectangular Prism\n");
+				frontend_logger.print("9) Triangular Prism\n");
+				frontend_logger.print("10) Cone\n");
+				frontend_logger.print("11) Cube\n");
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				std::cin >> option;
 				frontend_logger.log_value("", option);
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 
 				double area;
 
@@ -230,22 +230,22 @@ int main(int argc, const char* argv[])
 				{
 					double base, base2, height;
 
-					frontend_logger.just_print("Enter base: ");
+					frontend_logger.print("Enter base: ");
 					std::cin >> base;
 
 					frontend_logger.log_value("", base);
 
-					frontend_logger.just_print("Enter base 2: ");
+					frontend_logger.print("Enter base 2: ");
 					std::cin >> base2;
 
 					frontend_logger.log_value("", base2);
 
-					frontend_logger.just_print("Enter height: ");
+					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
 					frontend_logger.log_value("", height);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					trapezoid_t shape = Trapezoid(base, base2, height);
 					area = shape.area;
@@ -257,17 +257,17 @@ int main(int argc, const char* argv[])
 				{
 					double length, width;
 
-					frontend_logger.just_print("Enter length: ");
+					frontend_logger.print("Enter length: ");
 					std::cin >> length;
 
 					frontend_logger.log_value("", length);
 
-					frontend_logger.just_print("Enter width: ");
+					frontend_logger.print("Enter width: ");
 					std::cin >> width;
 
 					frontend_logger.log_value("", width);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					rectangle_t shape = Rectangle(length, width);
 					area = shape.area;
@@ -281,17 +281,17 @@ int main(int argc, const char* argv[])
 				{
 					double base, height;
 
-					frontend_logger.just_print("Enter base: ");
+					frontend_logger.print("Enter base: ");
 					std::cin >> base;
 
 					frontend_logger.log_value("", base);
 
-					frontend_logger.just_print("Enter height: ");
+					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
 					frontend_logger.log_value("", height);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					triangle_t shape = Triangle(base, height);
 					area = shape.area;
@@ -303,12 +303,12 @@ int main(int argc, const char* argv[])
 				{
 					double side;
 
-					frontend_logger.just_print("Enter side: ");
+					frontend_logger.print("Enter side: ");
 					std::cin >> side;
 
 					frontend_logger.log_value("", side);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					rhombus_t shape = Rhombus(side);
 					area = shape.area;
@@ -320,12 +320,12 @@ int main(int argc, const char* argv[])
 				{
 					double side;
 
-					frontend_logger.just_print("Enter side: ");
+					frontend_logger.print("Enter side: ");
 					std::cin >> side;
 
 					frontend_logger.log_value("", side);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					hexagon_t shape = Hexagon(side);
 					area = shape.area;
@@ -337,12 +337,12 @@ int main(int argc, const char* argv[])
 				{
 					double radius;
 
-					frontend_logger.just_print("Enter radius: ");
+					frontend_logger.print("Enter radius: ");
 					std::cin >> radius;
 
 					frontend_logger.log_value("", radius);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					circle_t shape = Circle(radius);
 					area = shape.area;
@@ -354,12 +354,12 @@ int main(int argc, const char* argv[])
 				{
 					double side;
 
-					frontend_logger.just_print("Enter side: ");
+					frontend_logger.print("Enter side: ");
 					std::cin >> side;
 
 					frontend_logger.log_value("", side);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					square_t shape = Square(side);
 					area = shape.area;
@@ -371,22 +371,22 @@ int main(int argc, const char* argv[])
 				{
 					double length, width, height;
 
-					frontend_logger.just_print("Enter length: ");
+					frontend_logger.print("Enter length: ");
 					std::cin >> length;
 
 					frontend_logger.log_value("", length);
 
-					frontend_logger.just_print("Enter width: ");
+					frontend_logger.print("Enter width: ");
 					std::cin >> width;
 
 					frontend_logger.log_value("", width);
 
-					frontend_logger.just_print("Enter height: ");
+					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
 					frontend_logger.log_value("", height);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					rectangular_prism_t shape = Rectangular_Prism(length, width, height);
 					area = shape.area;
@@ -398,22 +398,22 @@ int main(int argc, const char* argv[])
 				{
 					double length, width, height;
 
-					frontend_logger.just_print("Enter length: ");
+					frontend_logger.print("Enter length: ");
 					std::cin >> length;
 
 					frontend_logger.log_value("", length);
 
-					frontend_logger.just_print("Enter width: ");
+					frontend_logger.print("Enter width: ");
 					std::cin >> width;
 
 					frontend_logger.log_value("", width);
 
-					frontend_logger.just_print("Enter height: ");
+					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
 					frontend_logger.log_value("", height);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					triangular_prism_t shape = Triangular_Prism(length, width, height);
 					area = shape.area;
@@ -425,17 +425,17 @@ int main(int argc, const char* argv[])
 				{
 					double radius, height;
 
-					frontend_logger.just_print("Enter radius: ");
+					frontend_logger.print("Enter radius: ");
 					std::cin >> radius;
 
 					frontend_logger.log_value("", radius);
 
-					frontend_logger.just_print("Enter height: ");
+					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
 					frontend_logger.log_value("", height);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					cone_t shape = Cone(radius, height);
 					area = shape.area;
@@ -447,12 +447,12 @@ int main(int argc, const char* argv[])
 				{
 					double face;
 
-					frontend_logger.just_print("Enter side: ");
+					frontend_logger.print("Enter side: ");
 					std::cin >> face;
 
 					frontend_logger.log_value("", face);
 
-					frontend_logger.just_print("\n");
+					frontend_logger.print("\n");
 
 					cube_t shape = Cube(face);
 					area = shape.area;
@@ -477,13 +477,13 @@ int main(int argc, const char* argv[])
 					frontend_logger.log_value("Volume: ", area);
 				}
 
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 			}
 
 			else if (option == 4)
 			{
 				help(frontend_logger);
-				frontend_logger.just_print("\n");
+				frontend_logger.print("\n");
 			}
 
 			else if (option == 5)
@@ -613,13 +613,13 @@ int main(int argc, const char* argv[])
 
 		else if((strcmp(argv[1], "--author")) == 0)
 		{
-			terminal_logger.just_print("Github: https://www.github.com/akachronix\n");
-			terminal_logger.just_print("SoundCloud: https://www.soundcloud.com/chronix2\n");
-			terminal_logger.just_print("Steam: https:///www.steamcommunity.com/id/datboichronchron\n");
-			terminal_logger.just_print("Instagram: https://www.instagram.com/akachronix\n");
-			terminal_logger.just_print("Snapchat: https://www.snapchat.com/add/aka.chronix\n");
-			terminal_logger.just_print("\n");
-			terminal_logger.just_print("You were curious about me, eh? ;)\n");
+			terminal_logger.print("Github: https://www.github.com/akachronix\n");
+			terminal_logger.print("SoundCloud: https://www.soundcloud.com/chronix2\n");
+			terminal_logger.print("Steam: https:///www.steamcommunity.com/id/datboichronchron\n");
+			terminal_logger.print("Instagram: https://www.instagram.com/akachronix\n");
+			terminal_logger.print("Snapchat: https://www.snapchat.com/add/aka.chronix\n");
+			terminal_logger.print("\n");
+			terminal_logger.print("You were curious about me, eh? ;)\n");
 		}
 
 		else
