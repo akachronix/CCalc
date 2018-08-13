@@ -60,7 +60,6 @@ public:
 
     // print function - goes into log_history to be flushed unlike std::cout
     bool print(std::string print_str);
-    bool just_print(std::string print_str);
 
     // called by deconstructor, but can also be called manually
     bool dump_log(std::string file);
