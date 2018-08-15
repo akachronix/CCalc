@@ -17,7 +17,7 @@
 #include <iostream>
 #include <cstring>
 
-#include "libmath.hpp"
+#include "everything.h"
 using namespace libmath;
 
 int main(int argc, const char* argv[])

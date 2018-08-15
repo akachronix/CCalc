@@ -20,10 +20,8 @@
 #include <cstring>
 #include <ctime>
 
-#include "libmath.hpp"
+#include "everything.h"
 using namespace libmath;
-
-#include "liblog.hpp"
 
 static void help(logger& log)
 {
@@ -72,7 +70,7 @@ int main(int argc, const char* argv[])
 
 	if(argc == 1)
 	{
-		frontend_logger.print("cCalc v2.1\n");
+		frontend_logger.print("cCalc v2.2\n");
 		frontend_logger.print("(C) 2018 akachronix\n");
 		frontend_logger.print("https://github.com/akachronix\n");
 		frontend_logger.print("\n");
