@@ -72,7 +72,7 @@ int main(int argc, const char* argv[])
 
 	if(argc == 1)
 	{
-		frontend_logger.print("cCalc v2.0\n");
+		frontend_logger.print("cCalc v2.1\n");
 		frontend_logger.print("(C) 2018 akachronix\n");
 		frontend_logger.print("https://github.com/akachronix\n");
 		frontend_logger.print("\n");
