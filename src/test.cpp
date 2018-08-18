@@ -19,6 +19,7 @@
 
 #include "everything.h"
 using namespace libmath;
+using namespace libinput;
 
 int main(int argc, const char* argv[])
 {
@@ -32,8 +33,11 @@ int main(int argc, const char* argv[])
 
 	else if(argc == 1)
 	{
-		std::cout << "Please open me in the terminal!" << std::endl;
-		return -1;
+		num1 = GetDouble("Enter first number: ");
+		num2 = GetDouble("Enter second number: ");
+		num3 = GetDouble("Enter third number: ");
+
+		std::cout << std::endl;
 	}
 
 	else
