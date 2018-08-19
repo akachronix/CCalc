@@ -23,7 +23,7 @@
 #include "everything.h"
 using namespace libmath;
 
-static void help(logger& log)
+static void help(const logger& log)
 {
 	log.print("Arithmetic -\n");
 	log.print("  --add | adds two numbers (two arguments)\n");
@@ -53,7 +53,7 @@ static void help(logger& log)
 	log.print("  --author | details about yours truly\n");
 }
 
-static std::string GetFileName(std::string prepend)
+static std::string GetFileName(std::string& prepend)
 {
 	std::time_t t = std::time(0);   // get time now
 	std::tm* now = std::localtime(&t);
