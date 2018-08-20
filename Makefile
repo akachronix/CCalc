@@ -1,25 +1,22 @@
 CC=g++
 CXXFLAGS=-Iinclude -Llib -std=c++11 -Wall -pedantic -g
+CXXLINKFLAGS=-leverything -static
+
+PRODUCT=ccalc
 
 install: all
 	sudo cp bin/ccalc /usr/bin
 
-all: main.o test.o
-	if [ -d obj ]; then rm -rf obj; fi
-	if [ -d bin ]; then rm -rf bin; fi
+all: clean main.o
 	mkdir bin obj
 	mv *.o obj
-	$(CC) $(CXXFLAGS) -s obj/main.o -o bin/ccalc -leverything -static
-	$(CC) $(CXXFLAGS) -s obj/test.o -o bin/test -leverything -static
-	$(CC) $(CXXFLAGS) obj/main.o -o bin/ccalc_debug -leverything -static
-	$(CC) $(CXXFLAGS) obj/test.o -o bin/test_debug -leverything -static
+	$(CC) $(CXXFLAGS) -s obj/main.o -o bin/$(PRODUCT) $(CXXLINKFLAGS)
+	$(CC) $(CXXFLAGS) obj/main.o -o bin/$(PRODUCT)_debug $(CXXLINKFLAGS)
 
 main.o: src/main.cpp
 	$(CC) $(CXXFLAGS) -c src/main.cpp
 
-test.o: src/test.cpp
-	$(CC) $(CXXFLAGS) -c src/test.cpp
-
 clean:
-	rm -rf bin obj
+	if [ -d obj ]; then rm -rf obj; fi
+	if [ -d bin ]; then rm -rf bin; fi
 	if [ -f /usr/bin/ccalc ]; then sudo rm -rf /usr/bin/ccalc; fi
