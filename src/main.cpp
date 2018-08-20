@@ -14,6 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+// TODO: Add perimeter functions
+// TODO: Make CLI more clear on area
+// TODO: Make frontend more clear on area
+
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
@@ -22,6 +26,7 @@
 
 #include "everything.h"
 using namespace libmath;
+using namespace libinput;
 
 static void help(logger log)
 {
