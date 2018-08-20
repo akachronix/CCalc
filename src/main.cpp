@@ -70,7 +70,7 @@ int main(int argc, const char* argv[])
 
 	if(argc == 1)
 	{
-		frontend_logger.print("cCalc v2.2\n");
+		frontend_logger.print("cCalc v2.3\n");
 		frontend_logger.print("(C) 2018 akachronix\n");
 		frontend_logger.print("https://github.com/akachronix\n");
 		frontend_logger.print("\n");
@@ -94,10 +94,21 @@ int main(int argc, const char* argv[])
 
 			frontend_logger.print("\n");
 
-			int option;
-			std::cin >> option;
+			int option = 0;
 
-			frontend_logger.log_value(option);
+			std::string buffer = "";
+			std::cin >> buffer;
+
+			if (atof(buffer.c_str()) > 0 && atof(buffer.c_str()) < 6)
+			{
+				option = atoi(buffer.c_str());
+				frontend_logger.log_value(option);
+			}
+
+			else
+			{
+				frontend_logger.log_error("Invalid input.");
+			}
 
 			frontend_logger.print("\n");
 
