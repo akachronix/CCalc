@@ -13,10 +13,18 @@ Compiles on Linux & Mac (using Make) and Windows (using MinGW).
 - GCC 4.8.1 (if using Cygwin)
 
 ## Build (Linux)
-- Clone repository using
+- Clone everything.h repository using
+```git clone https://github.com/akachronix/everything.h.git```
+
+- Clone CCalc repository using
 ```git clone https://github.com/akachronix/CCalc.git```
 
-- Run makefile.
+- Run everything.h makefile.
+```make all```
+
+- Copy lib folder created by Makefile to CCalc directory.
+
+- Run CCalc makefile.
 ```make all```
 
 - Success.
@@ -24,31 +32,45 @@ Compiles on Linux & Mac (using Make) and Windows (using MinGW).
 ## Build (Windows)
 - Install Git for Windows.
 
-- Clone repository using
+- Clone everything.h repository using
+```git clone https://github.com/akachronix/everything.h.git```
+
+- Clone CCalc repository using
 ```git clone https://github.com/akachronix/CCalc.git```
 
-- Open a Command Prompt where Git for Windows cloned the repository.
+- Open a Command Prompt where Git for Windows cloned the everything.h repository.
 
-- Run compile script. (MinGW)
-```compile.cmd```
+- Run everything.h makefile.
+```mingw32-make all```
 
-- Run makefile. (Cygwin)
-```make```
+- Copy lib folder into CCalc folder.
+
+- Run CCalc makefile
+```mingw32-make all```
 
 - Success.
 
 ## Install (Linux)
-- Clone repository using
+- Clone everything.h repository using
+```git clone https://github.com/akachronix/everything.h.git```
+
+- Clone CCalc repository using
 ```git clone https://github.com/akachronix/CCalc.git```
 
-- Run makefile.
+- Run everything.h makefile.
+```make all```
+
+- Copy lib folder created by Makefile to CCalc directory.
+
+- Run CCalc makefile.
 ```make install```
 
 - Success.
 
 ## Help
+- If your Makefile output is something along the lines of incompatible lib, then recompile the static library.
+
 - If your terminal output looks something like this when running a compile script on Windows:
 ```cygwin-compile.sh: line 2: $'\r': command not found```
 ```cygwin-compile.sh: line 76: syntax error: unexpected end of file```
 open Notepad++. Open the file and go under Edit/EOL Conversions and change that to Unix.
-
