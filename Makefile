@@ -4,8 +4,8 @@ CXXLINKFLAGS=-leverything -static
 
 PRODUCT=ccalc
 
-install: all
-	sudo cp bin/ccalc /usr/bin
+#install: all
+#	sudo cp bin/ccalc /usr/bin
 
 all: clean main.o
 	mkdir bin obj

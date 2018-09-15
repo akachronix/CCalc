@@ -14,9 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// TODO: Add perimeter functions
-// TODO: Make CLI more clear on area
-// TODO: Make frontend more clear on area
+#warning TODO: Fix logging values
+#warning TODO: Add perimeter functions.
+#warning TODO: Make CLI more clear on area.
+#warning TODO: Make frontend more clear on area.
 
 #include <iostream>
 #include <sstream>
@@ -26,9 +27,10 @@
 
 #include "everything.h"
 using namespace libmath;
+using namespace libpair;
 using namespace libinput;
 
-static void help(logger log)
+static void help(Logger log)
 {
 	log.print("Arithmetic -\n");
 	log.print("  --add | adds two numbers (two arguments)\n");
@@ -60,22 +62,25 @@ static void help(logger log)
 
 static std::string GetFileName(std::string prepend)
 {
-	std::time_t t = std::time(0);   // get time now
+	std::time_t t = std::time(0);
 	std::tm* now = std::localtime(&t);
 
 	std::ostringstream stream;
 	stream << prepend << "_" << now->tm_mon + 1 << now->tm_mday << now->tm_year + 1900 << "_" << now->tm_hour << now->tm_min << ".log";
+
+	// cleanup
+	delete(now);
 
 	return stream.str();
 }
 
 int main(int argc, const char* argv[])
 {
-	logger frontend_logger(everything, GetFileName("ccalc"));
+	Logger frontend_logger(everything, GetFileName("ccalc"));
 
 	if(argc == 1)
 	{
-		frontend_logger.print("cCalc v2.3\n");
+		frontend_logger.print("cCalc v3.0\n");
 		frontend_logger.print("(C) 2018 akachronix\n");
 		frontend_logger.print("https://github.com/akachronix\n");
 		frontend_logger.print("\n");
@@ -107,12 +112,13 @@ int main(int argc, const char* argv[])
 			if (atof(buffer.c_str()) > 0 && atof(buffer.c_str()) < 6)
 			{
 				option = atoi(buffer.c_str());
-				frontend_logger.log_value(option);
+				frontend_logger << option;
+				frontend_logger << newl;
 			}
 
 			else
 			{
-				frontend_logger.log_error("Invalid input.");
+				frontend_logger.logError("Invalid input.");
 			}
 
 			frontend_logger.print("\n");
@@ -127,7 +133,8 @@ int main(int argc, const char* argv[])
 				frontend_logger.print("\n");
 
 				std::cin >> option;
-				frontend_logger.log_value(option);
+				frontend_logger << option;
+				frontend_logger << newl;
 
 				frontend_logger.print("\n");
 
@@ -136,39 +143,53 @@ int main(int argc, const char* argv[])
 				frontend_logger.print("Enter first number: ");
 
 				std::cin >> num1;
-				frontend_logger.log_value(num1);
+				frontend_logger << num1;
+				frontend_logger << newl;
 
 				frontend_logger.print("Enter second number: ");
 
 				std::cin >> num2;
-				frontend_logger.log_value(num2);
+				frontend_logger << num2;
+				frontend_logger << newl;
 
 				frontend_logger.print("\n");
 
 				switch (option)
 				{
 				case 1:
-					std::cout << "Answer: " << add(num1, num2) << std::endl;
-					frontend_logger.log_value("Answer: ", add(num1, num2));
+					//std::cout << "Answer: " << add(num1, num2) << std::endl;
+					//frontend_logger.log_value("Answer: ", add(num1, num2));
+					frontend_logger << "Answer: ";
+					frontend_logger << add(num1, num2);
+					frontend_logger << newl;
 					break;
 
 				case 2:
-					std::cout << "Answer: " << subtract(num1, num2) << std::endl;
-					frontend_logger.log_value("Answer: ", subtract(num1, num2));
+					//std::cout << "Answer: " << subtract(num1, num2) << std::endl;
+					//frontend_logger.log_value("Answer: ", subtract(num1, num2));
+					frontend_logger << "Answer: ";
+					frontend_logger << subtract(num1, num2);
+					frontend_logger << newl;
 					break;
 
 				case 3:
-					std::cout << "Answer: " << multiply(num1, num2) << std::endl;
-					frontend_logger.log_value("Answer: ", multiply(num1, num2));
+					//std::cout << "Answer: " << multiply(num1, num2) << std::endl;
+					//frontend_logger.log_value("Answer: ", multiply(num1, num2));
+					frontend_logger << "Answer: ";
+					frontend_logger << multiply(num1, num2);
+					frontend_logger << newl;
 					break;
 
 				case 4:
-					std::cout << "Answer: " << divide(num1, num2) << std::endl;
-					frontend_logger.log_value("Answer: ", divide(num1, num2));
+					//std::cout << "Answer: " << divide(num1, num2) << std::endl;
+					//frontend_logger.log_value("Answer: ", divide(num1, num2));
+					frontend_logger << "Answer: ";
+					frontend_logger << divide(num1, num2);
+					frontend_logger << newl;
 					break;
 
 				default:
-					frontend_logger.log_error("Invalid input.");
+					frontend_logger.logError("Invalid input.");
 					break;
 				}
 
@@ -182,7 +203,7 @@ int main(int argc, const char* argv[])
 				frontend_logger.print("\n");
 
 				std::cin >> option;
-				frontend_logger.log_value(option);
+				frontend_logger << option;
 
 				frontend_logger.print("\n");
 
@@ -191,24 +212,27 @@ int main(int argc, const char* argv[])
 				frontend_logger.print("Enter first number: ");
 				std::cin >> num1;
 
-				frontend_logger.log_value(num1);
+				frontend_logger << num1;
 
 				frontend_logger.print("Enter second number: ");
 				std::cin >> num2;
 
-				frontend_logger.log_value(num2);
+				frontend_logger << num2;
 
 				frontend_logger.print("\n");
 
 				switch (option)
 				{
 				case 1:
-					std::cout << "Answer: " << power(num1, num2) << std::endl;
-					frontend_logger.log_value("Answer: ", power(num1, num2));
+					//std::cout << "Answer: " << power(num1, num2) << std::endl;
+					//frontend_logger.log_value("Answer: ", power(num1, num2));
+					frontend_logger << "Answer: ";
+					frontend_logger << power(num1, num2);
+					frontend_logger << newl;
 					break;
 
 				default:
-					frontend_logger.log_error("Invalid input.");
+					frontend_logger.logError("Invalid input.");
 					break;
 				}
 
@@ -232,7 +256,7 @@ int main(int argc, const char* argv[])
 				frontend_logger.print("\n");
 
 				std::cin >> option;
-				frontend_logger.log_value("", option);
+				frontend_logger << option;
 
 				frontend_logger.print("\n");
 
@@ -247,17 +271,17 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter base: ");
 					std::cin >> base;
 
-					frontend_logger.log_value("", base);
+					frontend_logger << base;
 
 					frontend_logger.print("Enter base 2: ");
 					std::cin >> base2;
 
-					frontend_logger.log_value("", base2);
+					frontend_logger << base2;
 
 					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
-					frontend_logger.log_value("", height);
+					frontend_logger << height;
 
 					frontend_logger.print("\n");
 
@@ -274,19 +298,19 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter length: ");
 					std::cin >> length;
 
-					frontend_logger.log_value("", length);
+					frontend_logger << length;
 
 					frontend_logger.print("Enter width: ");
 					std::cin >> width;
 
-					frontend_logger.log_value("", width);
+					frontend_logger << width;
 
 					frontend_logger.print("\n");
 
 					rectangle_t shape = Rectangle(length, width);
 					area = shape.area;
 
-					frontend_logger.log_value("", shape.area);
+					frontend_logger << shape.area;
 
 					break;
 				}
@@ -298,12 +322,12 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter base: ");
 					std::cin >> base;
 
-					frontend_logger.log_value("", base);
+					frontend_logger << base;
 
 					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
-					frontend_logger.log_value("", height);
+					frontend_logger << height;
 
 					frontend_logger.print("\n");
 
@@ -320,7 +344,7 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter side: ");
 					std::cin >> side;
 
-					frontend_logger.log_value("", side);
+					frontend_logger << side;
 
 					frontend_logger.print("\n");
 
@@ -337,7 +361,7 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter side: ");
 					std::cin >> side;
 
-					frontend_logger.log_value("", side);
+					frontend_logger << side;
 
 					frontend_logger.print("\n");
 
@@ -354,7 +378,7 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter radius: ");
 					std::cin >> radius;
 
-					frontend_logger.log_value("", radius);
+					frontend_logger << radius;
 
 					frontend_logger.print("\n");
 
@@ -371,7 +395,7 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter side: ");
 					std::cin >> side;
 
-					frontend_logger.log_value("", side);
+					frontend_logger << side;
 
 					frontend_logger.print("\n");
 
@@ -388,17 +412,17 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter length: ");
 					std::cin >> length;
 
-					frontend_logger.log_value("", length);
+					frontend_logger << length;
 
 					frontend_logger.print("Enter width: ");
 					std::cin >> width;
 
-					frontend_logger.log_value("", width);
+					frontend_logger << width;
 
 					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
-					frontend_logger.log_value("", height);
+					frontend_logger << height;
 
 					frontend_logger.print("\n");
 
@@ -415,17 +439,17 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter length: ");
 					std::cin >> length;
 
-					frontend_logger.log_value("", length);
+					frontend_logger << length;
 
 					frontend_logger.print("Enter width: ");
 					std::cin >> width;
 
-					frontend_logger.log_value("", width);
+					frontend_logger << width;
 
 					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
-					frontend_logger.log_value("", height);
+					frontend_logger << height;
 
 					frontend_logger.print("\n");
 
@@ -442,12 +466,12 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter radius: ");
 					std::cin >> radius;
 
-					frontend_logger.log_value("", radius);
+					frontend_logger << radius;
 
 					frontend_logger.print("Enter height: ");
 					std::cin >> height;
 
-					frontend_logger.log_value("", height);
+					frontend_logger << height;
 
 					frontend_logger.print("\n");
 
@@ -464,7 +488,7 @@ int main(int argc, const char* argv[])
 					frontend_logger.print("Enter side: ");
 					std::cin >> face;
 
-					frontend_logger.log_value("", face);
+					frontend_logger << face;
 
 					frontend_logger.print("\n");
 
@@ -475,20 +499,26 @@ int main(int argc, const char* argv[])
 				}
 
 				default:
-					frontend_logger.log_error("Invalid input.");
+					frontend_logger.logError("Invalid input.");
 					break;
 				}
 
 				if (option > 0 && option <= 7)
 				{
-					std::cout << "Area: " << area << std::endl;
-					frontend_logger.log_value("Area: ", area);
+					// std::cout << "Area: " << area << std::endl;
+					// frontend_logger.log_value("Area: ", area);
+					frontend_logger << "Area: ";
+					frontend_logger << area;
+					frontend_logger << newl;
 				}
 
 				else if (option > 7 && option <= 11)
 				{
-					std::cout << "Volume: " << area << std::endl;
-					frontend_logger.log_value("Volume: ", area);
+					//std::cout << "Volume: " << area << std::endl;
+					//frontend_logger.log_value("Volume: ", area);
+					frontend_logger << "Volume: ";
+					frontend_logger << area;
+					frontend_logger << newl;
 				}
 
 				frontend_logger.print("\n");
@@ -509,9 +539,10 @@ int main(int argc, const char* argv[])
 		return 0;
 	}
 
+	/*
 	else if(argc > 0)
 	{
-		logger terminal_logger(everything, GetFileName("ccalc"));
+		Logger terminal_logger(everything, GetFileName("ccalc"));
 
 		if((strcmp(argv[1], "--add")) == 0)
 		{
@@ -638,12 +669,13 @@ int main(int argc, const char* argv[])
 
 		else
 		{
-			terminal_logger.log_error("Invalid command.");
+			terminal_logger.logError("Invalid command.");
 			help(terminal_logger);
 
 			return -1;
 		}
 	}
+	*/
 
 	return 0;
 }
