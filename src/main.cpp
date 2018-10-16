@@ -86,11 +86,12 @@ int main(int argc, const char* argv[])
 
 		while (running)
 		{
-			frontend_logger << "1) Arithmetic\n";
-			frontend_logger << "2) Exponential\n";
-			frontend_logger << "3) Geometry\n";
-			frontend_logger << "4) Help\n";
-			frontend_logger << "5) Exit\n";
+			frontend_logger << "1) Arithmetic" << newl;
+			frontend_logger << "2) Exponential" << newl;
+			frontend_logger << "3) Geometry" << newl;
+			frontend_logger << "4) Dump Log" << newl;
+			frontend_logger << "5) Help" << newl;
+			frontend_logger << "6) Exit" << newl;
 			frontend_logger << newl;
 
 			int option = 0;
@@ -98,7 +99,7 @@ int main(int argc, const char* argv[])
 			std::string buffer = "";
 			frontend_logger >> buffer;
 
-			if (atof(buffer.c_str()) > 0 && atof(buffer.c_str()) < 6)
+			if (atof(buffer.c_str()) > 0 && atof(buffer.c_str()) < 7)
 				option = atoi(buffer.c_str());
 
 			else
@@ -416,14 +417,19 @@ int main(int argc, const char* argv[])
 
 				frontend_logger << newl;
 			}
-
+			
 			else if (option == 4)
+			{
+				frontend_logger.dumpLog();
+			}
+
+			else if (option == 5)
 			{
 				help(frontend_logger);
 				frontend_logger << newl;
 			}
 
-			else if (option == 5)
+			else if (option == 6)
 			{
 				running = false;
 			}
