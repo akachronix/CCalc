@@ -75,8 +75,8 @@ int main(int argc, const char* argv[])
 		frontend_logger << newl;
 		frontend_logger << "Choose \"Help\" to view features." << newl;
 		frontend_logger << newl;
-    	frontend_logger << "This program comes with ABSOLUTELY NO WARRANTY." << newl;
-    	frontend_logger << "This is free software, and you are welcome to redistribute it under certain conditions." << newl;
+		frontend_logger << "This program comes with ABSOLUTELY NO WARRANTY." << newl;
+		frontend_logger << "This is free software, and you are welcome to redistribute it under certain conditions." << newl;
 		frontend_logger << newl;
 		frontend_logger << "See LICENSE for details." << newl;
 		frontend_logger << newl;
