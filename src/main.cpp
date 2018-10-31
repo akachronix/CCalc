@@ -20,8 +20,7 @@
 #include <cstring>
 #include <ctime>
 
-#include "libmath.hpp"
-#include "liblog.hpp"
+#include "everything.h"
 
 void help(Logger& log)
 {
