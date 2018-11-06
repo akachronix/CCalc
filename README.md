@@ -66,11 +66,3 @@ Compiles on Linux & Mac (using Make) and Windows (using MinGW).
 ```make install```
 
 - Success.
-
-## Help
-- If your Makefile output is something along the lines of incompatible lib, then recompile the static library.
-
-- If your terminal output looks something like this when running a compile script on Windows:
-```cygwin-compile.sh: line 2: $'\r': command not found```
-```cygwin-compile.sh: line 76: syntax error: unexpected end of file```
-open Notepad++. Open the file and go under Edit/EOL Conversions and change that to Unix.
