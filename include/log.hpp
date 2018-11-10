@@ -19,41 +19,19 @@ class Logger
 {
 public:
 	Logger();
-	~Logger();
-
 	Logger(loglevel_t _loglevel, std::string _logfile);
+	Logger(Logger&) = delete;
+	Logger(Logger&&) = delete;
+
+	~Logger();
 
 	bool logError(std::string error_str);
 	bool logWarning(std::string warning_str);
 
-	bool print(short value);
-	bool print(unsigned short value);
-	bool print(int value);
-	bool print(unsigned int value);
-	bool print(unsigned long value);
-	bool print(long value);
-	bool print(unsigned long long value);
-	bool print(long long value);
-	bool print(float value);
-	bool print(double value);
-	bool print(long double value);
-	bool print(const char* print_str);
-	bool print(std::string print_str);
+	template<typename T> bool print(T value);
 	bool print(Logger&(*func)(Logger&));
 
-	void input(short& var);
-	void input(unsigned short& var);
-	void input(int& var);
-	void input(unsigned int& var);
-	void input(long& var);
-	void input(unsigned long& var);
-	void input(long long& var);
-	void input(unsigned long long& var);
-	void input(float& var);
-	void input(double& var);
-	void input(long double& var);
-	void input(const char* var);
-	void input(std::string& var);
+	template<typename T> void input(T& var);
 
 	bool dumpLog(std::string file);
 	bool dumpLog();
@@ -64,27 +42,37 @@ private:
 	std::string m_logFile;
 };
 
-using logger_t = Logger;
+Logger::Logger()
+	: m_logLevel(loglevel_t::everything), m_logFile("Logger.log")
+{
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger()\n";
+#endif
+}
 
 Logger::Logger(loglevel_t _loglevel, std::string _logfile)
 	: m_logLevel(_loglevel), m_logFile(_logfile)
 {
-
-}
-
-Logger::Logger()
-	: m_logLevel(loglevel_t::everything), m_logFile("Logger.log")
-{
-
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger(loglevel_t _loglevel, std::string _logfile)\n";
+#endif
 }
 
 Logger::~Logger()
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "~Logger()\n";
+#endif
+
 	dumpLog(m_logFile);
 }
 
 bool Logger::logError(std::string error_str)
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "bool Logger::logError(std::string error_str)\n";
+#endif
+
 	if (m_logLevel >= loglevel_t::errors)
 	{
 		std::string message = "[ERROR] " + error_str + "\n";
@@ -100,6 +88,10 @@ bool Logger::logError(std::string error_str)
 
 bool Logger::logWarning(std::string warning_str)
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "bool Logger::logWarning(std::string warning_str)\n";
+#endif
+
 	if (m_logLevel >= loglevel_t::warnings)
 	{
 		std::string message = "[WARNING] " + warning_str + "\n";
@@ -113,14 +105,19 @@ bool Logger::logWarning(std::string warning_str)
 	return false;
 }
 
-bool Logger::print(short value)
+template<typename T>
+bool Logger::print(T value)
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "bool Logger::print(T value)\n";
+#endif
+
 	if (m_logLevel >= loglevel_t::print)
 	{
-		std::ostringstream casted_value;
+		std::stringstream casted_value;
 		casted_value << value;
-		
-		std::cout << casted_value.str();
+		std::cout << value;
+
 		logHistory.push_back(casted_value.str());
 
 		return true;
@@ -129,194 +126,12 @@ bool Logger::print(short value)
 	return false;
 }
 
-bool Logger::print(unsigned short value)
+bool Logger::print(Logger& (*func) (Logger&))
 {
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-		
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "bool Logger::print(Logger& (*func) (Logger&))\n";
+#endif
 
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(int value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-		
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(unsigned int value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-		
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(long value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(unsigned long value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(long long value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(unsigned long long value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(float value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-		
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(double value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-		
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(long double value)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::ostringstream casted_value;
-		casted_value << value;
-		
-		std::cout << casted_value.str();
-		logHistory.push_back(casted_value.str());
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(const char* print_str)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::cout << print_str;
-		logHistory.push_back(print_str);
-		
-		return true;
-	}
-	
-	return false;
-}
-
-bool Logger::print(std::string print_str)
-{
-	if (m_logLevel >= loglevel_t::print)
-	{
-		std::cout << print_str;
-		logHistory.push_back(print_str);
-
-		return true;
-	}
-
-	return false;
-}
-
-bool Logger::print(Logger&(*func)(Logger&))
-{
 	if (m_logLevel >= loglevel_t::print)
 	{
 		func(*this);
@@ -326,17 +141,13 @@ bool Logger::print(Logger&(*func)(Logger&))
 	return false;
 }
 
-void Logger::input(short& var)
+template<typename T>
+void Logger::input(T& var)
 {
-	std::cin >> var;
-	
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "void Logger::input(T& var)\n";
+#endif
 
-void Logger::input(unsigned short& var)
-{
 	std::cin >> var;
 
 	std::stringstream varToString;
@@ -344,282 +155,89 @@ void Logger::input(unsigned short& var)
 	logHistory.push_back(varToString.str());
 }
 
-void Logger::input(int& var)
+template<typename T>
+Logger& operator<<(Logger& log, T value)
 {
-	std::cin >> var;
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger& operator<<(Logger& log, T value)\n";
+#endif
 
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(unsigned int& var)
-{
-	std::cin >> var;
-
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(long& var)
-{
-	std::cin >> var;
-
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(unsigned long& var)
-{
-	std::cin >> var;
-
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(long long& var)
-{
-	std::cin >> var;
-
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(unsigned long long& var)
-{
-	std::cin >> var;
-
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(float& var)
-{
-	std::cin >> var;
-	
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(double& var)
-{
-	std::cin >> var;
-	
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(long double& var)
-{
-	std::cin >> var;
-	
-	std::stringstream varToString;
-	varToString << var << "\n";
-	logHistory.push_back(varToString.str());
-}
-
-void Logger::input(std::string& var)
-{
-	std::cin >> var;
-	logHistory.push_back(var + "\n");
-}
-
-Logger& operator<< (Logger& log, short value)
-{
 	log.print(value);
 	return log;
 }
 
-Logger& operator<< (Logger& log, unsigned short value)
+Logger& operator<<(Logger& log, Logger&(*func)(Logger&))
 {
-	log.print(value);
-	return log;
-}
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger& operator<<(Logger&, Logger&(*func)(Logger&)\n";
+#endif
 
-Logger& operator<< (Logger& log, int value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, unsigned int value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, long value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, unsigned long value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, long long value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, unsigned long long value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, float value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, double value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, long double value)
-{
-	log.print(value);
-	return log;
-}
-
-Logger& operator<< (Logger& log, const char* str)
-{
-	log.print(str);
-	return log;
-}
-
-Logger& operator<< (Logger& log, std::string str)
-{
-	log.print(str);
-	return log;
-}
-
-Logger& operator<< (Logger& log, Logger&(*func)(Logger&))
-{
 	return (*func)(log);
 }
 
-Logger& operator>> (Logger& log, short& value)
+template<typename T>
+Logger& operator>>(Logger& log, T& value)
 {
-	log.input(value);
-	return log;
-}
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger& operator>>(Logger& log, T& value)\n";
+#endif
 
-Logger& operator>> (Logger& log, unsigned short& value)
-{
 	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, int& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, unsigned int& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, long& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, unsigned long& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, long long& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, unsigned long long& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, float& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, double& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, long double& value)
-{
-	log.input(value);
-	return log;
-}
-
-Logger& operator>> (Logger& log, std::string& str)
-{
-	log.input(str);
 	return log;
 }
 
 Logger& newl(Logger& log)
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger& newl(Logger& log)\n";
+#endif
+
 	log.print("\n");
 	return log;
 }
 
 Logger& stab(Logger& log)
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger& stab(Logger& log)\n";
+#endif
+
 	log.print("  ");
 	return log;
 }
 
 Logger& tab(Logger& log)
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger& tab(Logger& log)\n";
+#endif
+
 	log.print("    ");
 	return log;
 }
 
 Logger& space(Logger& log)
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "Logger& space(Logger& log)\n";
+#endif
+
 	log.print(" ");
 	return log;
 }
 
 bool Logger::dumpLog(std::string file)
 {
-	if(logHistory.size() != 0)
-	{
-		std::ofstream log_file;
-		log_file.open(file);
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "bool Logger::dumpLog(std::string file)\n";
+#endif
 
-		if(log_file.is_open())
+	if (logHistory.size() != 0)
+	{
+		std::ofstream log_file(file);
+		if (log_file.is_open())
 		{
-			for(auto x : logHistory)
+			for (auto x : logHistory)
 				log_file << x;
 
 			log_file.close();
@@ -632,5 +250,11 @@ bool Logger::dumpLog(std::string file)
 
 bool Logger::dumpLog()
 {
+#if defined(EVERYTHING_DEBUG) || defined(LOGGER_DEBUG)
+	std::cout << "bool Logger::dumpLog()\n";
+#endif
+
 	return dumpLog(m_logFile);
 }
+
+using logger_t = Logger;
