@@ -30,9 +30,12 @@ void help(Logger& log)
 	log << "  --subtract | subtracts two numbers (two arguments)" << newl;
 	log << "  --multiply | multiplies two numbers (two arguments)" << newl;
 	log << "  --divide | divides two numbers (two arguments)" << newl;
+	log << "  --modulus | divides two numbers and returns the remainder (two arguments)" << newl;
 	log << newl;
 	log << "Exponential -" << newl;
 	log << "  --power | puts x to the power of y (two arguments)" << newl;
+	log << "  --square-root | finds the square root of a number (one argument)" << newl;
+	log << "  --cubic-root | finds the cubic root of a number (one argument)" << newl;
 	log << newl;
 	log << "Geometry (2D) -" << newl;
 	log << "  --trapezoid | finds the area of a trapezoid (three arguments) [base, 2nd base, height]" << newl;
@@ -163,6 +166,7 @@ int main(int argc, const char* argv[])
 			{
 				frontend_logger << "1) Power" << newl;
 				frontend_logger << "2) Square Root" << newl;
+				frontend_logger << "3) Cubic Root" << newl;
 				frontend_logger << newl;
 
 				frontend_logger >> option;
@@ -195,6 +199,18 @@ int main(int argc, const char* argv[])
 					frontend_logger << newl;
 
 					frontend_logger << "Answer: " << sqrt(num1) << newl;
+					break;
+				}
+
+				case 3:
+				{
+					long long num1;
+					frontend_logger << "Enter number: ";
+					frontend_logger >> num1;
+
+					frontend_logger << newl;
+
+					frontend_logger << "Answer: " << cbrt(num1) << newl;
 					break;
 				}
 
@@ -463,103 +479,118 @@ int main(int argc, const char* argv[])
 	{
 		Logger terminal_logger(loglevel_t::everything, GetFileName("ccalc"));
 
-		if((strcmp(argv[1], "--add")) == 0 && argc >= 3)
+		if ((strcmp(argv[1], "--add")) == 0 && argc >= 4)
 		{
 			terminal_logger << "Answer: " << atof(argv[2]) + atof(argv[3]) << newl;
 		}
 
-		else if((strcmp(argv[1], "--subtract")) == 0 && argc >= 3)
+		else if ((strcmp(argv[1], "--subtract")) == 0 && argc >= 4)
 		{
 			terminal_logger << "Answer: " << atof(argv[2]) - atof(argv[3]) << newl;
 		}
 
-		else if((strcmp(argv[1], "--multiply")) == 0 && argc >= 3)
+		else if ((strcmp(argv[1], "--multiply")) == 0 && argc >= 4)
 		{
 			terminal_logger << "Answer: " << atof(argv[2]) * atof(argv[3]) << newl;
 		}
 
-		else if((strcmp(argv[1], "--divide")) == 0 && argc >= 3)
+		else if ((strcmp(argv[1], "--divide")) == 0 && argc >= 4)
 		{
-			terminal_logger << "Answer: " << atof(argv[2]) / atof(argv[3])  << newl;
+			terminal_logger << "Answer: " << atof(argv[2]) / atof(argv[3]) << newl;
 		}
 
-		else if((strcmp(argv[1], "--power")) == 0 && argc >= 3)
+		else if ((strcmp(argv[1], "--modulus")) == 0 && argc >= 4)
+		{
+			terminal_logger << "Answer: " << atol(argv[2]) % atol(argv[3]) << newl;
+		}
+
+		else if ((strcmp(argv[1], "--power")) == 0 && argc >= 4)
 		{
 			terminal_logger << "Answer: " << pow(atof(argv[2]), atof(argv[3])) << newl;
 		}
 
-		else if((strcmp(argv[1], "--trapezoid")) == 0 && argc >= 4)
+		else if ((strcmp(argv[1], "--square-root")) == 0 && argc >= 3)
+		{
+			terminal_logger << "Answer: " << sqrt(atof(argv[2])) << newl;
+		}
+
+		else if ((strcmp(argv[1], "--cubic-root")) == 0 && argc >= 3)
+		{
+			terminal_logger << "Answer: " << cbrt(atof(argv[2])) << newl;
+		}
+
+		else if ((strcmp(argv[1], "--trapezoid")) == 0 && argc >= 5)
 		{
 			Trapezoid<long double> shape(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--rectangle")) ==  0  && argc >= 3)
+		else if ((strcmp(argv[1], "--rectangle")) ==  0  && argc >= 4)
 		{
 			Rectangle<long double> shape(atof(argv[2]), atof(argv[3]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--triangle")) == 0 && argc >= 3)
+		else if ((strcmp(argv[1], "--triangle")) == 0 && argc >= 4)
 		{
 			Triangle<long double> shape(atof(argv[2]), atof(argv[3]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--rhombus")) == 0 && argc >= 2)
+		else if ((strcmp(argv[1], "--rhombus")) == 0 && argc >= 3)
 		{
 			Rhombus<long double> shape(atof(argv[2]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if ((strcmp(argv[1], "--hexagon")) == 0 && argc >= 2)
+		else if ((strcmp(argv[1], "--hexagon")) == 0 && argc >= 3)
 		{
 			Hexagon<long double> shape(atof(argv[2]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--circle")) == 0 && argc >= 2)
+		else if ((strcmp(argv[1], "--circle")) == 0 && argc >= 3)
 		{
 			Circle<long double> shape(atof(argv[2]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--square")) == 0 && argc >= 2)
+		else if ((strcmp(argv[1], "--square")) == 0 && argc >= 3)
 		{
 			Square<long double> shape(atof(argv[2]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--rectangular-prism")) == 0 && argc >= 4)
+		else if ((strcmp(argv[1], "--rectangular-prism")) == 0 && argc >= 5)
 		{
 			RectangularPrism<long double> shape(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--triangular-prism")) == 0 && argc >= 4)
+		else if ((strcmp(argv[1], "--triangular-prism")) == 0 && argc >= 5)
 		{
 			TriangularPrism<long double> shape(atof(argv[2]), atof(argv[3]), atof(argv[4]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--cone")) == 0 && argc >= 2)
+		else if ((strcmp(argv[1], "--cone")) == 0 && argc >= 4)
 		{
 			Cone<long double> shape(atof(argv[2]), atof(argv[3]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--cube")) == 0 && argc >= 2)
+		else if ((strcmp(argv[1], "--cube")) == 0 && argc >= 3)
 		{
 			Cube<long double> shape(atof(argv[2]));
 			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--help")) == 0)
+		else if ((strcmp(argv[1], "--help")) == 0)
 		{
 			help(terminal_logger);
 		}
 
-		else if((strcmp(argv[1], "--author")) == 0)
+		else if ((strcmp(argv[1], "--author")) == 0)
 		{
 			terminal_logger << "Github: https://www.github.com/akachronix" << newl;
 			terminal_logger << "SoundCloud: https://www.soundcloud.com/chronix2" << newl;
