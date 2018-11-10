@@ -11,7 +11,7 @@ LIBDIR=lib
 OBJDIR=obj
 SRCDIR=src
 
-TARGET=test
+TARGET=ccalc
 
 all: $(TARGET)
 
