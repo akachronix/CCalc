@@ -18,6 +18,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <cstring>
+#include <cmath>
 #include <ctime>
 
 #include "everything.h"
@@ -65,10 +66,10 @@ static std::string GetFileName(std::string prepend)
 
 int main(int argc, const char* argv[])
 {
-	Logger frontend_logger(loglevel_t::everything, GetFileName("ccalc"));
-
-	if(argc == 1)
+	if (argc == 1)
 	{
+		Logger frontend_logger(loglevel_t::everything, GetFileName("ccalc"));
+
 		frontend_logger << "cCalc v3.0" << newl;
 		frontend_logger << "(C) 2018 akachronix" << newl;
 		frontend_logger << "https://github.com/akachronix" << newl;
@@ -100,7 +101,7 @@ int main(int argc, const char* argv[])
 
 			if (atof(buffer.c_str()) > 0 && atof(buffer.c_str()) < 7)
 				option = atoi(buffer.c_str());
-
+			
 			else
 				frontend_logger.logError("Invalid input.");
 
@@ -112,6 +113,7 @@ int main(int argc, const char* argv[])
 				frontend_logger << "2) Subtract" << newl;
 				frontend_logger << "3) Multiply" << newl;
 				frontend_logger << "4) Divide" << newl;
+				frontend_logger << "5) Modulus" << newl;
 				frontend_logger << newl;
 
 				frontend_logger >> option;
@@ -130,19 +132,23 @@ int main(int argc, const char* argv[])
 				switch (option)
 				{
 				case 1:
-					frontend_logger << "Answer: " << add(num1, num2) << newl;
+					frontend_logger << "Answer: " << num1 + num2 << newl;
 					break;
 
 				case 2:
-					frontend_logger << "Answer: " << subtract(num1, num2) << newl;
+					frontend_logger << "Answer: " << num1 + num2 << newl;
 					break;
 
 				case 3:
-					frontend_logger << "Answer: "<< multiply(num1, num2) << newl;
+					frontend_logger << "Answer: "<< num1 - num2 << newl;
 					break;
 
 				case 4:
-					frontend_logger << "Answer: " << divide(num1, num2)  << newl;
+					frontend_logger << "Answer: " << num1 / num2 << newl;
+					break;
+				
+				case 5:
+					frontend_logger << "Answer: " << (int)num1 % (int)num2 << newl;
 					break;
 
 				default:
@@ -150,32 +156,47 @@ int main(int argc, const char* argv[])
 					break;
 				}
 
-				frontend_logger << newl;;
+				frontend_logger << newl;
 			}
 
 			else if (option == 2)
 			{
 				frontend_logger << "1) Power" << newl;
+				frontend_logger << "2) Square Root" << newl;
 				frontend_logger << newl;
 
 				frontend_logger >> option;
 				frontend_logger << newl;
 
-				double num1, num2;
-
-				frontend_logger << "Enter first number: ";
-				frontend_logger >> num1;
-
-				frontend_logger << "Enter second number: ";
-				frontend_logger >> num2;
-
-				frontend_logger << newl;
-
 				switch (option)
 				{
 				case 1:
-					frontend_logger << "Answer: " << power(num1, num2) << newl;
+				{
+					long long num1, num2;
+
+					frontend_logger << "Enter first number: ";
+					frontend_logger >> num1;
+
+					frontend_logger << "Enter second number: ";
+					frontend_logger >> num2;
+
+					frontend_logger << newl;
+
+					frontend_logger << "Answer: " << pow(num1, num2) << newl;
 					break;
+				}
+
+				case 2:
+				{
+					long long num1;
+					frontend_logger << "Enter number: ";
+					frontend_logger >> num1;
+
+					frontend_logger << newl;
+
+					frontend_logger << "Answer: " << sqrt(num1) << newl;
+					break;
+				}
 
 				default:
 					frontend_logger.logError("Invalid input.");
@@ -222,8 +243,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					trapezoid_t shape = Trapezoid(base, base2, height);
-					area = shape.area;
+					Trapezoid<double> shape(base, base2, height);
+					area = shape.area();
 
 					break;
 				}
@@ -240,8 +261,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					rectangle_t shape = Rectangle(length, width);
-					area = shape.area;
+					Rectangle<double> shape(length, width);
+					area = shape.area();
 
 					break;
 				}
@@ -258,8 +279,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					triangle_t shape = Triangle(base, height);
-					area = shape.area;
+					Triangle<double> shape(base, height);
+					area = shape.area();
 
 					break;
 				}
@@ -273,8 +294,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					rhombus_t shape = Rhombus(side);
-					area = shape.area;
+					Rhombus<double> shape(side);
+					area = shape.area();
 
 					break;
 				}
@@ -288,8 +309,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					hexagon_t shape = Hexagon(side);
-					area = shape.area;
+					Hexagon<double> shape(side);
+					area = shape.area();
 
 					break;
 				}
@@ -303,8 +324,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					circle_t shape = Circle(radius);
-					area = shape.area;
+					Circle<double> shape(radius);
+					area = shape.area();
 
 					break;
 				}
@@ -318,8 +339,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					square_t shape = Square(side);
-					area = shape.area;
+					Square<double> shape(side);
+					area = shape.area();
 
 					break;
 				}
@@ -339,8 +360,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					rectangular_prism_t shape = Rectangular_Prism(length, width, height);
-					area = shape.area;
+					RectangularPrism<double> shape(length, width, height);
+					area = shape.area();
 
 					break;
 				}
@@ -360,8 +381,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					triangular_prism_t shape = Triangular_Prism(length, width, height);
-					area = shape.area;
+					TriangularPrism<double> shape(length, width, height);
+					area = shape.area();
 
 					break;
 				}
@@ -378,8 +399,8 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					cone_t shape = Cone(radius, height);
-					area = shape.area;
+					Cone<double> shape(radius, height);
+					area = shape.area();
 
 					break;
 				}
@@ -393,14 +414,15 @@ int main(int argc, const char* argv[])
 
 					frontend_logger << newl;
 
-					cube_t shape = Cube(face);
-					area = shape.area;
+					Cube<double> shape(face);
+					area = shape.area();
 
 					break;
 				}
 
 				default:
 					frontend_logger.logError("Invalid input.");
+					area = 0.0;
 					break;
 				}
 
@@ -437,99 +459,99 @@ int main(int argc, const char* argv[])
 		return 0;
 	}
 
-	else if(argc > 0)
+	else
 	{
 		Logger terminal_logger(loglevel_t::everything, GetFileName("ccalc"));
 
-		if((strcmp(argv[1], "--add")) == 0)
+		if((strcmp(argv[1], "--add")) == 0 && argc >= 3)
 		{
-			terminal_logger << "Answer: " << add(atof(argv[2]), atof(argv[3])) << newl;
+			terminal_logger << "Answer: " << atof(argv[2]) + atof(argv[3]) << newl;
 		}
 
-		else if((strcmp(argv[1], "--subtract")) == 0)
+		else if((strcmp(argv[1], "--subtract")) == 0 && argc >= 3)
 		{
-			terminal_logger << "Answer: " << subtract(atof(argv[2]), atof(argv[3])) << newl;
+			terminal_logger << "Answer: " << atof(argv[2]) - atof(argv[3]) << newl;
 		}
 
-		else if((strcmp(argv[1], "--multiply")) == 0)
+		else if((strcmp(argv[1], "--multiply")) == 0 && argc >= 3)
 		{
-			terminal_logger << "Answer: " << multiply(atof(argv[2]), atof(argv[3])) << newl;
+			terminal_logger << "Answer: " << atof(argv[2]) * atof(argv[3]) << newl;
 		}
 
-		else if((strcmp(argv[1], "--divide")) == 0)
+		else if((strcmp(argv[1], "--divide")) == 0 && argc >= 3)
 		{
-			terminal_logger << "Answer: " << divide(atof(argv[2]), atof(argv[3])) << newl;
+			terminal_logger << "Answer: " << atof(argv[2]) / atof(argv[3])  << newl;
 		}
 
-		else if((strcmp(argv[1], "--power")) == 0)
+		else if((strcmp(argv[1], "--power")) == 0 && argc >= 3)
 		{
-			terminal_logger << "Answer: " << power(atof(argv[2]), atof(argv[3])) << newl;
+			terminal_logger << "Answer: " << pow(atof(argv[2]), atof(argv[3])) << newl;
 		}
 
-		else if((strcmp(argv[1], "--trapezoid")) == 0)
+		else if((strcmp(argv[1], "--trapezoid")) == 0 && argc >= 4)
 		{
-			trapezoid_t shape = Trapezoid(atof(argv[2]), atof(argv[3]), atof(argv[4]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Trapezoid<long double> shape(atof(argv[2]), atof(argv[3]), atof(argv[4]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--rectangle")) ==  0)
+		else if((strcmp(argv[1], "--rectangle")) ==  0  && argc >= 3)
 		{
-			rectangle_t shape = Rectangle(atof(argv[2]), atof(argv[3]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Rectangle<long double> shape(atof(argv[2]), atof(argv[3]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--triangle")) == 0)
+		else if((strcmp(argv[1], "--triangle")) == 0 && argc >= 3)
 		{
-			triangle_t shape = Triangle(atof(argv[2]), atof(argv[3]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Triangle<long double> shape(atof(argv[2]), atof(argv[3]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--rhombus")) == 0)
+		else if((strcmp(argv[1], "--rhombus")) == 0 && argc >= 2)
 		{
-			rhombus_t shape = Rhombus(atof(argv[2]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Rhombus<long double> shape(atof(argv[2]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if ((strcmp(argv[1], "--hexagon")) == 0)
+		else if ((strcmp(argv[1], "--hexagon")) == 0 && argc >= 2)
 		{
-			hexagon_t shape = Hexagon(atof(argv[2]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Hexagon<long double> shape(atof(argv[2]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--circle")) == 0)
+		else if((strcmp(argv[1], "--circle")) == 0 && argc >= 2)
 		{
-			circle_t shape = Circle(atof(argv[2]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Circle<long double> shape(atof(argv[2]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--square")) == 0)
+		else if((strcmp(argv[1], "--square")) == 0 && argc >= 2)
 		{
-			square_t shape = Square(atof(argv[2]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Square<long double> shape(atof(argv[2]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--rectangular-prism")) == 0)
+		else if((strcmp(argv[1], "--rectangular-prism")) == 0 && argc >= 4)
 		{
-			rectangular_prism_t shape = Rectangular_Prism(atof(argv[2]), atof(argv[3]), atof(argv[4]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			RectangularPrism<long double> shape(atof(argv[2]), atof(argv[3]), atof(argv[4]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--triangular-prism")) == 0)
+		else if((strcmp(argv[1], "--triangular-prism")) == 0 && argc >= 4)
 		{
-			triangular_prism_t shape = Triangular_Prism(atof(argv[2]), atof(argv[3]), atof(argv[4]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			TriangularPrism<long double> shape(atof(argv[2]), atof(argv[3]), atof(argv[4]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--cone")) == 0)
+		else if((strcmp(argv[1], "--cone")) == 0 && argc >= 2)
 		{
-			cone_t shape = Cone(atof(argv[2]), atof(argv[3]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Cone<long double> shape(atof(argv[2]), atof(argv[3]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
-		else if((strcmp(argv[1], "--cube")) == 0)
+		else if((strcmp(argv[1], "--cube")) == 0 && argc >= 2)
 		{
-			cube_t shape = Cube(atof(argv[2]));
-			terminal_logger << "Answer: " << shape.area << newl;
+			Cube<long double> shape(atof(argv[2]));
+			terminal_logger << "Answer: " << shape.area() << newl;
 		}
 
 		else if((strcmp(argv[1], "--help")) == 0)
