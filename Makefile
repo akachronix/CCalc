@@ -1,29 +1,27 @@
 CC=g++
-CXXFLAGS=-Wall -Werror -pedantic -g
-CXXLINKFLAGS=-static
-
-BINDIR=bin
-OBJDIR=obj
-INCLUDEDIR=include
+CXXFLAGS=-Wall -Werror -pedantic -O2
+CXXLDFLAGS=-static
+STD=c++17
 
 OBJS=main.o
 
-STD=c++11
-TARGET=ccalc
+BINDIR=bin
+INCLUDEDIR=include
+LIBDIR=lib
+OBJDIR=obj
+SRCDIR=src
 
-$(TARGET): all
+TARGET=test
 
-install: all
-	sudo cp bin/ccalc /usr/bin
+all: $(TARGET)
 
-all: clean $(OBJS)
+$(TARGET): clean $(OBJS)
 	mkdir $(BINDIR) $(OBJDIR)
-	$(CC) -std=$(STD) -I$(INCLUDEDIR) -$(CXXFLAGS) $(OBJS) -o bin/$(TARGET) $(CXXLINKFLAGS)
+	$(CC) -std=$(STD) -I$(INCLUDEDIR) -L$(LIBDIR) $(CXXFLAGS) $(OBJS) -o $(BINDIR)/$(TARGET) $(CXXLDFLAGS)
 	mv *.o $(OBJDIR)
 
-main.o: src/main.cpp
-	$(CC) $(CXXFLAGS) -c $^
+main.o: $(SRCDIR)/main.cpp
+	$(CC) -std=$(STD) -I$(INCLUDEDIR) -L$(LIBDIR) $(CXXFLAGS) -c $^
 
 clean:
-	rm -rf $(BINDIR) $(OBJDIR) *.log
-	if [ -f /usr/bin/ccalc ]; then sudo rm -rf /usr/bin/ccalc; fi
+	rm -rf *.log $(BINDIR) $(OBJDIR)
